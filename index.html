@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 SME Agent for Nebula — Program Dashboard</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2333;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+    --warning: #d29922;
+    --danger: #f85149;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.5; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  /* Header */
+  .header { text-align: center; padding: 48px 24px 32px; background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a1e2e 100%); border-bottom: 1px solid var(--border); }
+  .header h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+  .header h1 .emoji { font-size: 32px; }
+  .header .subtitle { color: var(--text-muted); font-size: 16px; }
+  .header .update-badge { display: inline-block; margin-top: 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 4px 16px; font-size: 12px; color: var(--accent); }
+
+  /* Delta Banner */
+  .delta-banner { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+  .delta-banner h3 { font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+  .delta-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+  .delta-item { flex: 1; min-width: 180px; }
+  .delta-item .label { font-size: 12px; color: var(--text-muted); }
+  .delta-item .value { font-size: 14px; font-weight: 600; }
+  .delta-item .value.up { color: var(--accent2); }
+  .delta-item .value.down { color: var(--danger); }
+  .delta-item .value.neutral { color: var(--warning); }
+
+  /* KPI Cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+  .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; transition: border-color 0.2s; }
+  .kpi-card:hover { border-color: var(--accent); }
+  .kpi-card .kpi-value { font-size: 42px; font-weight: 700; line-height: 1.1; }
+  .kpi-card .kpi-label { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+  .kpi-card .kpi-detail { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+  .kpi-card .kpi-value.blue { color: var(--accent); }
+  .kpi-card .kpi-value.green { color: var(--accent2); }
+  .kpi-card .kpi-value.orange { color: var(--warning); }
+  .kpi-card .kpi-value.red { color: var(--danger); }
+  .kpi-card .kpi-value.purple { color: var(--purple); }
+
+  /* Section */
+  .section { margin: 32px 0; }
+  .section-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .section-title .icon { margin-right: 8px; }
+
+  /* Progress Bars */
+  .progress-row { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
+  .progress-label { width: 160px; font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+  .progress-bar-bg { flex: 1; height: 24px; background: var(--surface2); border-radius: 6px; overflow: hidden; position: relative; }
+  .progress-bar-fill { height: 100%; border-radius: 6px; transition: width 0.6s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 11px; font-weight: 600; color: #fff; min-width: 40px; }
+  .progress-bar-fill.blue { background: linear-gradient(90deg, #1f6feb, #58a6ff); }
+  .progress-bar-fill.green { background: linear-gradient(90deg, #238636, #3fb950); }
+  .progress-pct { width: 50px; text-align: right; font-size: 14px; font-weight: 600; color: var(--text); }
+
+  /* Coverage by Product */
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+  .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .product-card .product-name { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+  .product-card .product-stats { display: flex; gap: 16px; margin-bottom: 10px; }
+  .product-card .stat { text-align: center; }
+  .product-card .stat .val { font-size: 20px; font-weight: 700; }
+  .product-card .stat .lbl { font-size: 11px; color: var(--text-muted); }
+  .product-card .mini-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+  .product-card .mini-fill { height: 100%; border-radius: 3px; }
+
+  /* Status Pipeline */
+  .pipeline { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+  .pipeline-stage { flex: 1; min-width: 100px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+  .pipeline-stage .stage-count { font-size: 28px; font-weight: 700; }
+  .pipeline-stage .stage-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+  .stage-deployed .stage-count { color: var(--accent2); }
+  .stage-inprogress .stage-count { color: var(--purple); }
+  .stage-assigned .stage-count { color: var(--warning); }
+  .stage-blocked .stage-count { color: var(--danger); }
+  .stage-unassigned .stage-count { color: var(--text-muted); }
+
+  /* Engineer Table */
+  .eng-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  .eng-table th { background: var(--surface2); padding: 10px 14px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); border-bottom: 2px solid var(--border); }
+  .eng-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .eng-table tr:hover { background: var(--surface2); }
+  .eng-table .name { font-weight: 600; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .badge-deployed { background: rgba(63,185,80,0.15); color: var(--accent2); }
+  .badge-inprogress { background: rgba(188,140,255,0.15); color: var(--purple); }
+  .badge-assigned { background: rgba(210,153,34,0.15); color: var(--warning); }
+  .badge-blocked { background: rgba(248,81,73,0.15); color: var(--danger); }
+  .badge-notstarted { background: rgba(139,148,158,0.15); color: var(--text-muted); }
+
+  .table-bar { width: 80px; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 6px; }
+  .table-bar-fill { height: 100%; border-radius: 4px; background: var(--accent2); }
+
+  /* Alerts */
+  .alert { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin: 8px 0; display: flex; align-items: flex-start; gap: 12px; }
+  .alert .alert-icon { font-size: 18px; flex-shrink: 0; }
+  .alert .alert-text { font-size: 14px; }
+  .alert .alert-text b { color: var(--text); }
+  .alert-warning { border-left: 3px solid var(--warning); }
+  .alert-danger { border-left: 3px solid var(--danger); }
+  .alert-success { border-left: 3px solid var(--accent2); }
+
+  /* Footer */
+  .footer { text-align: center; padding: 32px 0; margin-top: 32px; border-top: 1px solid var(--border); }
+  .footer p { font-size: 12px; color: var(--text-muted); margin: 4px 0; }
+  .footer .brand { color: var(--accent); font-weight: 600; }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* ETA */
+  .eta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .eta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .eta-card .eta-month { font-size: 13px; color: var(--text-muted); }
+  .eta-card .eta-count { font-size: 28px; font-weight: 700; color: var(--accent); }
+  .eta-card .eta-label { font-size: 11px; color: var(--text-muted); }
+  .eta-card.warn .eta-count { color: var(--danger); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<div class="header">
+  <h1><span class="emoji">🚀</span> SME Agent for Nebula</h1>
+  <div class="subtitle">Program Dashboard</div>
+  <div class="update-badge">📅 Data refreshed: May 27, 2026 &nbsp;|&nbsp; Source: SharePoint — Nebula SME Agent Mapping.xlsx</div>
+</div>
+
+<div class="container">
+
+  <!-- ═══════════ DELTA BANNER ═══════════ -->
+  <div class="delta-banner">
+    <h3>📈 Changes Since May 21</h3>
+    <div class="delta-grid">
+      <div class="delta-item">
+        <div class="label">SAP Coverage</div>
+        <div class="value up">+5.3pp → 33.3% (21 → 25 deployed)</div>
+      </div>
+      <div class="delta-item">
+        <div class="label">IPD Coverage</div>
+        <div class="value up">+4.8pp → 49.5% (20.7 → 22.9 IPD)</div>
+      </div>
+      <div class="delta-item">
+        <div class="label">No-ETA Scenarios</div>
+        <div class="value up">35 → 6 (29 scenarios got ETAs!)</div>
+      </div>
+      <div class="delta-item">
+        <div class="label">New Product Deployments</div>
+        <div class="value up">ExR +2, LB +1, VPN +1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ KPI CARDS ═══════════ -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-value blue">33.3%</div>
+      <div class="kpi-label">SAP Coverage</div>
+      <div class="kpi-detail">25 / 75 SAPs with deployed agents</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value green">49.5%</div>
+      <div class="kpi-label">IPD Coverage</div>
+      <div class="kpi-detail">22.87 / 46.18 IPD</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value green">25</div>
+      <div class="kpi-label">Deployed</div>
+      <div class="kpi-detail">Agents live in production</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value purple">20</div>
+      <div class="kpi-label">In Progress</div>
+      <div class="kpi-detail">Currently building</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value orange">6</div>
+      <div class="kpi-label">No ETA</div>
+      <div class="kpi-detail">Need target dates</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ COVERAGE BARS ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span>Coverage Overview</div>
+
+    <div class="progress-row">
+      <div class="progress-label">SAP Coverage</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill blue" style="width:33.3%;">25/75</div>
+      </div>
+      <div class="progress-pct">33.3%</div>
+    </div>
+
+    <div class="progress-row">
+      <div class="progress-label">IPD Coverage</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill green" style="width:49.5%;">22.9/46.2</div>
+      </div>
+      <div class="progress-pct">49.5%</div>
+    </div>
+
+    <div class="progress-row">
+      <div class="progress-label">Nebula Target (25%)</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill blue" style="width:25%;opacity:0.4;"></div>
+      </div>
+      <div class="progress-pct" style="color:var(--accent2);">✅ Met</div>
+    </div>
+
+    <div class="progress-row">
+      <div class="progress-label">Nebula Stretch (35%)</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill blue" style="width:35%;opacity:0.4;"></div>
+      </div>
+      <div class="progress-pct" style="color:var(--warning);">95%</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ STATUS PIPELINE ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🔄</span>Agent Pipeline</div>
+    <div class="pipeline">
+      <div class="pipeline-stage stage-deployed">
+        <div class="stage-count">25</div>
+        <div class="stage-label">Deployed</div>
+      </div>
+      <div class="pipeline-stage stage-inprogress">
+        <div class="stage-count">20</div>
+        <div class="stage-label">In Progress</div>
+      </div>
+      <div class="pipeline-stage stage-assigned">
+        <div class="stage-count">15</div>
+        <div class="stage-label">Assigned</div>
+      </div>
+      <div class="pipeline-stage stage-blocked">
+        <div class="stage-count">1</div>
+        <div class="stage-label">Blocked</div>
+      </div>
+      <div class="pipeline-stage stage-unassigned">
+        <div class="stage-count">13</div>
+        <div class="stage-label">Unassigned</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ ETA BREAKDOWN ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📅</span>ETA of Completion</div>
+    <div class="eta-grid">
+      <div class="eta-card">
+        <div class="eta-month">May 2026</div>
+        <div class="eta-count">41</div>
+        <div class="eta-label">scenarios</div>
+      </div>
+      <div class="eta-card">
+        <div class="eta-month">June 2026</div>
+        <div class="eta-count">19</div>
+        <div class="eta-label">scenarios</div>
+      </div>
+      <div class="eta-card">
+        <div class="eta-month">July 2026</div>
+        <div class="eta-count">9</div>
+        <div class="eta-label">scenarios</div>
+      </div>
+      <div class="eta-card warn">
+        <div class="eta-month">⚠️ No ETA</div>
+        <div class="eta-count">6</div>
+        <div class="eta-label">need dates</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ COVERAGE BY PRODUCT ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🗂️</span>Coverage by Product</div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-name">Application Gateway</div>
+        <div class="product-stats">
+          <div class="stat"><div class="val" style="color:var(--accent2);">17/25</div><div class="lbl">SAPs</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">68%</div><div class="lbl">SAP Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">77.9%</div><div class="lbl">IPD Coverage</div></div>
+        </div>
+        <div class="mini-bar"><div class="mini-fill" style="width:68%;background:var(--accent2);"></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Load Balancer</div>
+        <div class="product-stats">
+          <div class="stat"><div class="val" style="color:var(--accent2);">5/7</div><div class="lbl">SAPs</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">71%</div><div class="lbl">SAP Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">75.7%</div><div class="lbl">IPD Coverage</div></div>
+        </div>
+        <div class="mini-bar"><div class="mini-fill" style="width:71%;background:var(--accent2);"></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">ExpressRoute</div>
+        <div class="product-stats">
+          <div class="stat"><div class="val" style="color:var(--accent2);">2/16</div><div class="lbl">SAPs</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">12%</div><div class="lbl">SAP Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">18.1%</div><div class="lbl">IPD Coverage</div></div>
+        </div>
+        <div class="mini-bar"><div class="mini-fill" style="width:12%;background:var(--accent2);"></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">VPN Gateway</div>
+        <div class="product-stats">
+          <div class="stat"><div class="val" style="color:var(--accent2);">1/15</div><div class="lbl">SAPs</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">7%</div><div class="lbl">SAP Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">12.5%</div><div class="lbl">IPD Coverage</div></div>
+        </div>
+        <div class="mini-bar"><div class="mini-fill" style="width:7%;background:var(--accent2);"></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Web Application Firewall (WAF)</div>
+        <div class="product-stats">
+          <div class="stat"><div class="val" style="color:var(--text-muted);">0/10</div><div class="lbl">SAPs</div></div>
+          <div class="stat"><div class="val" style="color:var(--text-muted);">0%</div><div class="lbl">SAP Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--purple);">10 IP</div><div class="lbl">All Building!</div></div>
+        </div>
+        <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--text-muted);"></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-name">Virtual Network</div>
+        <div class="product-stats">
+          <div class="stat"><div class="val" style="color:var(--text-muted);">0/2</div><div class="lbl">SAPs</div></div>
+          <div class="stat"><div class="val" style="color:var(--text-muted);">0%</div><div class="lbl">SAP Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--purple);">2 IP</div><div class="lbl">Building</div></div>
+        </div>
+        <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--text-muted);"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ ENGINEER TABLE ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">👥</span>Engineer Progress</div>
+    <table class="eng-table">
+      <thead>
+        <tr>
+          <th>Engineer</th>
+          <th>Product</th>
+          <th>SAPs</th>
+          <th>Deployed</th>
+          <th>In Prog</th>
+          <th>Assigned</th>
+          <th>IPD</th>
+          <th>Progress</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Lujain Nazem Albadarneh</td><td>AppGW</td><td>4</td><td><span class="badge badge-deployed">4</span></td><td>0</td><td>0</td><td>4.85</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:100%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Gilbert De Leon</td><td>AppGW</td><td>4</td><td><span class="badge badge-deployed">4</span></td><td>0</td><td>0</td><td>3.40</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:100%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Gitanjali Verma</td><td>AppGW</td><td>3</td><td><span class="badge badge-deployed">3</span></td><td>0</td><td>0</td><td>6.95</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:100%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Anas Al Shalabi</td><td>AppGW</td><td>2</td><td><span class="badge badge-deployed">2</span></td><td>0</td><td>0</td><td>2.40</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:100%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Ishmeet Kaur</td><td>AppGW</td><td>2</td><td><span class="badge badge-deployed">2</span></td><td>0</td><td>0</td><td>0.50</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:100%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Dakota Susag</td><td>AppGW</td><td>2</td><td><span class="badge badge-deployed">2</span></td><td>0</td><td>0</td><td>1.50</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:100%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Tony Bartholomaus</td><td>LB</td><td>7</td><td><span class="badge badge-deployed">5</span></td><td><span class="badge badge-inprogress">1</span></td><td>0</td><td>1.62</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:71%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Bryan Aguilar</td><td>ExR / VPN</td><td>3</td><td><span class="badge badge-deployed">2</span></td><td>0</td><td><span class="badge badge-assigned">1</span></td><td>0.70</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:67%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Ariel Esquivel</td><td>VPN</td><td>7</td><td><span class="badge badge-deployed">1</span></td><td><span class="badge badge-inprogress">1</span></td><td><span class="badge badge-assigned">5</span></td><td>4.67</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:14%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">David Ramsay</td><td>AppGW</td><td>8</td><td>0</td><td><span class="badge badge-inprogress">8</span></td><td>0</td><td>2.26</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Kris Martin</td><td>VNet / ExR</td><td>3</td><td>0</td><td><span class="badge badge-inprogress">3</span></td><td>0</td><td>2.40</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Zach Cabrera</td><td>AppGW</td><td>2</td><td>0</td><td><span class="badge badge-inprogress">2</span></td><td>0</td><td>1.60</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Swati Sharma</td><td>VPN</td><td>1</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td>0</td><td>6.58</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Saketh Tubati</td><td>AppGW</td><td>1</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td>0</td><td>0.83</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Srinath Kotagiri</td><td>VPN</td><td>1</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td>0</td><td>0.92</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Rikesh Saner</td><td>ExR</td><td>3</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td><span class="badge badge-assigned">2</span></td><td>1.75</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Diego Garro</td><td>AppGW</td><td>1</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td>0</td><td>0.10</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Christian Mailhe</td><td>VPN</td><td>7</td><td>0</td><td>0</td><td><span class="badge badge-assigned">7</span></td><td>1.45</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--warning);"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Kyle Fox</td><td>ExR</td><td>8</td><td>0</td><td>0</td><td>0</td><td>0.86</td>
+          <td><span class="badge badge-notstarted">Unassigned</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══════════ ALERTS ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⚡</span>Highlights & Alerts</div>
+
+    <div class="alert alert-success">
+      <div class="alert-icon">🎯</div>
+      <div class="alert-text"><b>Nebula 25% SAP target MET!</b> Coverage at 33.3%, approaching stretch goal of 35%. IPD at 49.5% — nearly half of all incident volume covered.</div>
+    </div>
+    <div class="alert alert-success">
+      <div class="alert-icon">🎉</div>
+      <div class="alert-text"><b>4 new deployments since May 21!</b> Bryan Aguilar deployed ExR + VPN agents, Tony Bartholomaus added LB #5, total now at 25 deployed.</div>
+    </div>
+    <div class="alert alert-success">
+      <div class="alert-icon">📋</div>
+      <div class="alert-text"><b>ETA coverage exploded:</b> 29 scenarios that had no ETA now have target months. Only 6 remain without dates (down from 35).</div>
+    </div>
+    <div class="alert alert-success">
+      <div class="alert-icon">🌊</div>
+      <div class="alert-text"><b>WAF wave incoming:</b> All 10 WAF scenarios are now InProgress — full product activation!</div>
+    </div>
+    <div class="alert alert-success">
+      <div class="alert-icon">📈</div>
+      <div class="alert-text"><b>Kris Martin activated:</b> Moved from Assigned → InProgress on 3 scenarios (VNet + ExR). Bryan Aguilar went from Not Started to 2 deployed.</div>
+    </div>
+    <div class="alert alert-warning">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-text"><b>Christian Mailhe</b> (7 VPN SAPs) still at Assigned — needs activation follow-up.</div>
+    </div>
+    <div class="alert alert-warning">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-text"><b>Kyle Fox</b> (8 ExR SAPs) listed but status is Unassigned — confirm commitment &amp; move to Assigned.</div>
+    </div>
+    <div class="alert alert-danger">
+      <div class="alert-icon">🔴</div>
+      <div class="alert-text"><b>Blocked:</b> LB / Configuration and Setup — Tony Bartholomaus (0.09 IPD). Needs unblock.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <div class="footer">
+    <p class="brand">🚀 SME Agent for Nebula</p>
+    <p>Azure Networking CSS | Program Leads: Prachand Kumar &amp; JR Mayberry</p>
+    <p>Data source: <a href="https://microsoft.sharepoint.com/:x:/r/teams/AzureSupportVMEnablement/_layouts/15/Doc.aspx?sourcedoc=%7BA897AE53-0372-4413-A307-3F790C0FACFB%7D&amp;file=Nebula%20SME%20Agent%20Mapping.xlsx">Nebula SME Agent Mapping.xlsx</a> (SharePoint) | Refreshed May 27, 2026</p>
+  </div>
+
+</div>
+</body>
+</html>
