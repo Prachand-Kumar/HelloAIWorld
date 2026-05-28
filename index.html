@@ -78,6 +78,7 @@
   .product-card .stat .lbl { font-size: 11px; color: var(--text-muted); }
   .product-card .mini-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
   .product-card .mini-fill { height: 100%; border-radius: 3px; }
+  .product-card.complete { border-color: var(--accent2); }
 
   /* Status Pipeline */
   .pipeline { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
@@ -137,30 +138,30 @@
 <div class="header">
   <h1><span class="emoji">🚀</span> SME Agent for Nebula</h1>
   <div class="subtitle">Program Dashboard</div>
-  <div class="update-badge">📅 Data refreshed: May 27, 2026 &nbsp;|&nbsp; Source: SharePoint — Nebula SME Agent Mapping.xlsx</div>
+  <div class="update-badge">📅 Data refreshed: May 28, 2026 &nbsp;|&nbsp; Source: SharePoint — Nebula SME Agent Mapping.xlsx</div>
 </div>
 
 <div class="container">
 
   <!-- ═══════════ DELTA BANNER ═══════════ -->
   <div class="delta-banner">
-    <h3>📈 Changes Since May 21</h3>
+    <h3>📈 Changes Since May 27</h3>
     <div class="delta-grid">
       <div class="delta-item">
         <div class="label">SAP Coverage</div>
-        <div class="value up">+5.3pp → 33.3% (21 → 25 deployed)</div>
+        <div class="value up">+4.0pp → 37.3% (25 → 28 deployed)</div>
       </div>
       <div class="delta-item">
         <div class="label">IPD Coverage</div>
-        <div class="value up">+4.8pp → 49.5% (20.7 → 22.9 IPD)</div>
+        <div class="value up">+2.9pp → 52.4% (22.9 → 24.2 IPD)</div>
       </div>
       <div class="delta-item">
-        <div class="label">No-ETA Scenarios</div>
-        <div class="value up">35 → 6 (29 scenarios got ETAs!)</div>
+        <div class="label">Load Balancer</div>
+        <div class="value up">🎯 100% complete! (6/6 SAPs)</div>
       </div>
       <div class="delta-item">
-        <div class="label">New Product Deployments</div>
-        <div class="value up">ExR +2, LB +1, VPN +1</div>
+        <div class="label">Unassigned</div>
+        <div class="value up">13 → 4 (9 got owners!)</div>
       </div>
     </div>
   </div>
@@ -168,22 +169,22 @@
   <!-- ═══════════ KPI CARDS ═══════════ -->
   <div class="kpi-grid">
     <div class="kpi-card">
-      <div class="kpi-value blue">33.3%</div>
+      <div class="kpi-value blue">37.3%</div>
       <div class="kpi-label">SAP Coverage</div>
-      <div class="kpi-detail">25 / 75 SAPs with deployed agents</div>
+      <div class="kpi-detail">28 / 75 SAPs deployed or completed</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-value green">49.5%</div>
+      <div class="kpi-value green">52.4%</div>
       <div class="kpi-label">IPD Coverage</div>
-      <div class="kpi-detail">22.87 / 46.18 IPD</div>
+      <div class="kpi-detail">24.19 / 46.18 IPD</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-value green">25</div>
-      <div class="kpi-label">Deployed</div>
-      <div class="kpi-detail">Agents live in production</div>
+      <div class="kpi-value green">28</div>
+      <div class="kpi-label">Deployed + Completed</div>
+      <div class="kpi-detail">27 deployed · 1 completed</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-value purple">20</div>
+      <div class="kpi-value purple">17</div>
       <div class="kpi-label">In Progress</div>
       <div class="kpi-detail">Currently building</div>
     </div>
@@ -201,17 +202,17 @@
     <div class="progress-row">
       <div class="progress-label">SAP Coverage</div>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill blue" style="width:33.3%;">25/75</div>
+        <div class="progress-bar-fill blue" style="width:37.3%;">28/75</div>
       </div>
-      <div class="progress-pct">33.3%</div>
+      <div class="progress-pct">37.3%</div>
     </div>
 
     <div class="progress-row">
       <div class="progress-label">IPD Coverage</div>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill green" style="width:49.5%;">22.9/46.2</div>
+        <div class="progress-bar-fill green" style="width:52.4%;">24.2/46.2</div>
       </div>
-      <div class="progress-pct">49.5%</div>
+      <div class="progress-pct">52.4%</div>
     </div>
 
     <div class="progress-row">
@@ -227,7 +228,7 @@
       <div class="progress-bar-bg">
         <div class="progress-bar-fill blue" style="width:35%;opacity:0.4;"></div>
       </div>
-      <div class="progress-pct" style="color:var(--warning);">95%</div>
+      <div class="progress-pct" style="color:var(--accent2);">✅ Met</div>
     </div>
   </div>
 
@@ -236,23 +237,23 @@
     <div class="section-title"><span class="icon">🔄</span>Agent Pipeline</div>
     <div class="pipeline">
       <div class="pipeline-stage stage-deployed">
-        <div class="stage-count">25</div>
-        <div class="stage-label">Deployed</div>
+        <div class="stage-count">28</div>
+        <div class="stage-label">Deployed / Done</div>
       </div>
       <div class="pipeline-stage stage-inprogress">
-        <div class="stage-count">20</div>
+        <div class="stage-count">17</div>
         <div class="stage-label">In Progress</div>
       </div>
       <div class="pipeline-stage stage-assigned">
-        <div class="stage-count">15</div>
+        <div class="stage-count">23</div>
         <div class="stage-label">Assigned</div>
       </div>
       <div class="pipeline-stage stage-blocked">
-        <div class="stage-count">1</div>
+        <div class="stage-count">2</div>
         <div class="stage-label">Blocked</div>
       </div>
       <div class="pipeline-stage stage-unassigned">
-        <div class="stage-count">13</div>
+        <div class="stage-count">4</div>
         <div class="stage-label">Unassigned</div>
       </div>
     </div>
@@ -269,12 +270,12 @@
       </div>
       <div class="eta-card">
         <div class="eta-month">June 2026</div>
-        <div class="eta-count">19</div>
+        <div class="eta-count">20</div>
         <div class="eta-label">scenarios</div>
       </div>
       <div class="eta-card">
         <div class="eta-month">July 2026</div>
-        <div class="eta-count">9</div>
+        <div class="eta-count">8</div>
         <div class="eta-label">scenarios</div>
       </div>
       <div class="eta-card warn">
@@ -289,6 +290,15 @@
   <div class="section">
     <div class="section-title"><span class="icon">🗂️</span>Coverage by Product</div>
     <div class="product-grid">
+      <div class="product-card complete">
+        <div class="product-name">✅ Load Balancer</div>
+        <div class="product-stats">
+          <div class="stat"><div class="val" style="color:var(--accent2);">6/6</div><div class="lbl">SAPs</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent2);">100%</div><div class="lbl">SAP Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent2);">100%</div><div class="lbl">IPD Coverage</div></div>
+        </div>
+        <div class="mini-bar"><div class="mini-fill" style="width:100%;background:var(--accent2);"></div></div>
+      </div>
       <div class="product-card">
         <div class="product-name">Application Gateway</div>
         <div class="product-stats">
@@ -299,22 +309,22 @@
         <div class="mini-bar"><div class="mini-fill" style="width:68%;background:var(--accent2);"></div></div>
       </div>
       <div class="product-card">
-        <div class="product-name">Load Balancer</div>
+        <div class="product-name">Virtual Network</div>
         <div class="product-stats">
-          <div class="stat"><div class="val" style="color:var(--accent2);">5/7</div><div class="lbl">SAPs</div></div>
-          <div class="stat"><div class="val" style="color:var(--accent);">71%</div><div class="lbl">SAP Coverage</div></div>
-          <div class="stat"><div class="val" style="color:var(--accent);">75.7%</div><div class="lbl">IPD Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent2);">1/2</div><div class="lbl">SAPs</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">50%</div><div class="lbl">SAP Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">52.6%</div><div class="lbl">IPD Coverage</div></div>
         </div>
-        <div class="mini-bar"><div class="mini-fill" style="width:71%;background:var(--accent2);"></div></div>
+        <div class="mini-bar"><div class="mini-fill" style="width:50%;background:var(--accent2);"></div></div>
       </div>
       <div class="product-card">
         <div class="product-name">ExpressRoute</div>
         <div class="product-stats">
-          <div class="stat"><div class="val" style="color:var(--accent2);">2/16</div><div class="lbl">SAPs</div></div>
-          <div class="stat"><div class="val" style="color:var(--accent);">12%</div><div class="lbl">SAP Coverage</div></div>
-          <div class="stat"><div class="val" style="color:var(--accent);">18.1%</div><div class="lbl">IPD Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent2);">3/16</div><div class="lbl">SAPs</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">19%</div><div class="lbl">SAP Coverage</div></div>
+          <div class="stat"><div class="val" style="color:var(--accent);">21.2%</div><div class="lbl">IPD Coverage</div></div>
         </div>
-        <div class="mini-bar"><div class="mini-fill" style="width:12%;background:var(--accent2);"></div></div>
+        <div class="mini-bar"><div class="mini-fill" style="width:19%;background:var(--accent2);"></div></div>
       </div>
       <div class="product-card">
         <div class="product-name">VPN Gateway</div>
@@ -331,15 +341,6 @@
           <div class="stat"><div class="val" style="color:var(--text-muted);">0/10</div><div class="lbl">SAPs</div></div>
           <div class="stat"><div class="val" style="color:var(--text-muted);">0%</div><div class="lbl">SAP Coverage</div></div>
           <div class="stat"><div class="val" style="color:var(--purple);">10 IP</div><div class="lbl">All Building!</div></div>
-        </div>
-        <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--text-muted);"></div></div>
-      </div>
-      <div class="product-card">
-        <div class="product-name">Virtual Network</div>
-        <div class="product-stats">
-          <div class="stat"><div class="val" style="color:var(--text-muted);">0/2</div><div class="lbl">SAPs</div></div>
-          <div class="stat"><div class="val" style="color:var(--text-muted);">0%</div><div class="lbl">SAP Coverage</div></div>
-          <div class="stat"><div class="val" style="color:var(--purple);">2 IP</div><div class="lbl">Building</div></div>
         </div>
         <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--text-muted);"></div></div>
       </div>
@@ -363,6 +364,10 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="name">Tony Bartholomaus</td><td>LB</td><td>7</td><td><span class="badge badge-deployed">6</span></td><td>0</td><td>0</td><td>1.62</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:86%;"></div></div> <span class="badge badge-blocked">1 blk</span></td>
+        </tr>
         <tr>
           <td class="name">Lujain Nazem Albadarneh</td><td>AppGW</td><td>4</td><td><span class="badge badge-deployed">4</span></td><td>0</td><td>0</td><td>4.85</td>
           <td><div class="table-bar"><div class="table-bar-fill" style="width:100%;"></div></div></td>
@@ -388,27 +393,31 @@
           <td><div class="table-bar"><div class="table-bar-fill" style="width:100%;"></div></div></td>
         </tr>
         <tr>
-          <td class="name">Tony Bartholomaus</td><td>LB</td><td>7</td><td><span class="badge badge-deployed">5</span></td><td><span class="badge badge-inprogress">1</span></td><td>0</td><td>1.62</td>
-          <td><div class="table-bar"><div class="table-bar-fill" style="width:71%;"></div></div></td>
-        </tr>
-        <tr>
-          <td class="name">Bryan Aguilar</td><td>ExR / VPN</td><td>3</td><td><span class="badge badge-deployed">2</span></td><td>0</td><td><span class="badge badge-assigned">1</span></td><td>0.70</td>
+          <td class="name">Bryan Aguilar</td><td>ExR</td><td>3</td><td><span class="badge badge-deployed">2</span></td><td>0</td><td><span class="badge badge-assigned">1</span></td><td>0.70</td>
           <td><div class="table-bar"><div class="table-bar-fill" style="width:67%;"></div></div></td>
         </tr>
         <tr>
-          <td class="name">Ariel Esquivel</td><td>VPN</td><td>7</td><td><span class="badge badge-deployed">1</span></td><td><span class="badge badge-inprogress">1</span></td><td><span class="badge badge-assigned">5</span></td><td>4.67</td>
+          <td class="name">Ariel Esquivel</td><td>ExR / VPN</td><td>7</td><td><span class="badge badge-deployed">1</span></td><td><span class="badge badge-inprogress">1</span></td><td><span class="badge badge-assigned">5</span></td><td>4.67</td>
           <td><div class="table-bar"><div class="table-bar-fill" style="width:14%;"></div></div></td>
         </tr>
         <tr>
-          <td class="name">David Ramsay</td><td>AppGW</td><td>8</td><td>0</td><td><span class="badge badge-inprogress">8</span></td><td>0</td><td>2.26</td>
+          <td class="name">Kyle Fox</td><td>ExR</td><td>8</td><td><span class="badge badge-deployed">1</span></td><td>0</td><td><span class="badge badge-assigned">7</span></td><td>0.86</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:12%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">Srinath Kotagiri</td><td>VNet</td><td>1</td><td><span class="badge badge-deployed">1</span></td><td>0</td><td>0</td><td>0.92</td>
+          <td><div class="table-bar"><div class="table-bar-fill" style="width:100%;"></div></div></td>
+        </tr>
+        <tr>
+          <td class="name">David Ramsay</td><td>WAF / AppGW</td><td>8</td><td>0</td><td><span class="badge badge-inprogress">8</span></td><td>0</td><td>2.26</td>
           <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
         </tr>
         <tr>
-          <td class="name">Kris Martin</td><td>VNet / ExR</td><td>3</td><td>0</td><td><span class="badge badge-inprogress">3</span></td><td>0</td><td>2.40</td>
+          <td class="name">Kris Martin</td><td>WAF</td><td>3</td><td>0</td><td><span class="badge badge-inprogress">3</span></td><td>0</td><td>2.40</td>
           <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
         </tr>
         <tr>
-          <td class="name">Zach Cabrera</td><td>AppGW</td><td>2</td><td>0</td><td><span class="badge badge-inprogress">2</span></td><td>0</td><td>1.60</td>
+          <td class="name">Zach Cabrera</td><td>AppGW</td><td>3</td><td>0</td><td><span class="badge badge-inprogress">2</span></td><td><span class="badge badge-assigned">1</span></td><td>1.70</td>
           <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
         </tr>
         <tr>
@@ -416,15 +425,11 @@
           <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
         </tr>
         <tr>
-          <td class="name">Saketh Tubati</td><td>AppGW</td><td>1</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td>0</td><td>0.83</td>
+          <td class="name">Saketh Tubati</td><td>VNet</td><td>1</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td>0</td><td>0.83</td>
           <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
         </tr>
         <tr>
-          <td class="name">Srinath Kotagiri</td><td>VPN</td><td>1</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td>0</td><td>0.92</td>
-          <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
-        </tr>
-        <tr>
-          <td class="name">Rikesh Saner</td><td>ExR</td><td>3</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td><span class="badge badge-assigned">2</span></td><td>1.75</td>
+          <td class="name">Rikesh Saner</td><td>AppGW</td><td>3</td><td>0</td><td><span class="badge badge-inprogress">1</span></td><td><span class="badge badge-assigned">2</span></td><td>1.75</td>
           <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--purple);"></div></div></td>
         </tr>
         <tr>
@@ -435,10 +440,6 @@
           <td class="name">Christian Mailhe</td><td>VPN</td><td>7</td><td>0</td><td>0</td><td><span class="badge badge-assigned">7</span></td><td>1.45</td>
           <td><div class="table-bar"><div class="table-bar-fill" style="width:0%;background:var(--warning);"></div></div></td>
         </tr>
-        <tr>
-          <td class="name">Kyle Fox</td><td>ExR</td><td>8</td><td>0</td><td>0</td><td>0</td><td>0.86</td>
-          <td><span class="badge badge-notstarted">Unassigned</span></td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -448,36 +449,32 @@
     <div class="section-title"><span class="icon">⚡</span>Highlights & Alerts</div>
 
     <div class="alert alert-success">
-      <div class="alert-icon">🎯</div>
-      <div class="alert-text"><b>Nebula 25% SAP target MET!</b> Coverage at 33.3%, approaching stretch goal of 35%. IPD at 49.5% — nearly half of all incident volume covered.</div>
+      <div class="alert-icon">🏆</div>
+      <div class="alert-text"><b>Load Balancer — 100% complete!</b> First product to reach full SAP and IPD coverage. Tony Bartholomaus deployed all 6 scenarios.</div>
     </div>
     <div class="alert alert-success">
-      <div class="alert-icon">🎉</div>
-      <div class="alert-text"><b>4 new deployments since May 21!</b> Bryan Aguilar deployed ExR + VPN agents, Tony Bartholomaus added LB #5, total now at 25 deployed.</div>
+      <div class="alert-icon">🎯</div>
+      <div class="alert-text"><b>Both Nebula targets MET!</b> SAP at 37.3% exceeds the 25% target and the 35% stretch goal. IPD at 52.4% — over half of incident volume covered.</div>
+    </div>
+    <div class="alert alert-success">
+      <div class="alert-icon">🚀</div>
+      <div class="alert-text"><b>3 new deployments overnight:</b> Tony (LB +1), Kyle Fox (ExR first deploy!), Srinath Kotagiri (VNet first deploy!). Total: 28 deployed.</div>
     </div>
     <div class="alert alert-success">
       <div class="alert-icon">📋</div>
-      <div class="alert-text"><b>ETA coverage exploded:</b> 29 scenarios that had no ETA now have target months. Only 6 remain without dates (down from 35).</div>
-    </div>
-    <div class="alert alert-success">
-      <div class="alert-icon">🌊</div>
-      <div class="alert-text"><b>WAF wave incoming:</b> All 10 WAF scenarios are now InProgress — full product activation!</div>
-    </div>
-    <div class="alert alert-success">
-      <div class="alert-icon">📈</div>
-      <div class="alert-text"><b>Kris Martin activated:</b> Moved from Assigned → InProgress on 3 scenarios (VNet + ExR). Bryan Aguilar went from Not Started to 2 deployed.</div>
+      <div class="alert-text"><b>Unassigned collapsed:</b> 13 → 4 scenarios. 9 scenarios got owners — Kyle Fox took 7 ExR, others distributed.</div>
     </div>
     <div class="alert alert-warning">
       <div class="alert-icon">⚠️</div>
-      <div class="alert-text"><b>Christian Mailhe</b> (7 VPN SAPs) still at Assigned — needs activation follow-up.</div>
-    </div>
-    <div class="alert alert-warning">
-      <div class="alert-icon">⚠️</div>
-      <div class="alert-text"><b>Kyle Fox</b> (8 ExR SAPs) listed but status is Unassigned — confirm commitment &amp; move to Assigned.</div>
+      <div class="alert-text"><b>Christian Mailhe</b> (7 VPN SAPs) still at Assigned — no InProgress movement yet.</div>
     </div>
     <div class="alert alert-danger">
       <div class="alert-icon">🔴</div>
-      <div class="alert-text"><b>Blocked:</b> LB / Configuration and Setup — Tony Bartholomaus (0.09 IPD). Needs unblock.</div>
+      <div class="alert-text"><b>2 Blocked scenarios:</b> (1) LB / Config and Setup — Tony Bartholomaus, (2) ExR / #REF! data error in spreadsheet — needs fix.</div>
+    </div>
+    <div class="alert alert-warning">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-text"><b>Spreadsheet #REF! error:</b> 1 row has a broken product reference — needs cleanup in SharePoint Excel.</div>
     </div>
   </div>
 
@@ -485,7 +482,7 @@
   <div class="footer">
     <p class="brand">🚀 SME Agent for Nebula</p>
     <p>Azure Networking CSS | Program Leads: Prachand Kumar &amp; JR Mayberry</p>
-    <p>Data source: <a href="https://microsoft.sharepoint.com/:x:/r/teams/AzureSupportVMEnablement/_layouts/15/Doc.aspx?sourcedoc=%7BA897AE53-0372-4413-A307-3F790C0FACFB%7D&amp;file=Nebula%20SME%20Agent%20Mapping.xlsx">Nebula SME Agent Mapping.xlsx</a> (SharePoint) | Refreshed May 27, 2026</p>
+    <p>Data source: <a href="https://microsoft.sharepoint.com/:x:/r/teams/AzureSupportVMEnablement/_layouts/15/Doc.aspx?sourcedoc=%7BA897AE53-0372-4413-A307-3F790C0FACFB%7D&amp;file=Nebula%20SME%20Agent%20Mapping.xlsx">Nebula SME Agent Mapping.xlsx</a> (SharePoint) | Refreshed May 28, 2026</p>
   </div>
 
 </div>
