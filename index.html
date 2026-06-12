@@ -1,0 +1,2747 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-900 Question Bank | 113 Practice Questions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --text: #1a1a2e;
+            --text-secondary: #64748b;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-bg: #eef2ff;
+            --correct-bg: #ecfdf5;
+            --correct-border: #6ee7b7;
+            --correct-text: #065f46;
+            --section-bg: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
+            --border: #e2e8f0;
+            --reveal-bg: #f1f5f9;
+            --nav-bg: rgba(255,255,255,0.85);
+            --badge-bg: #f0fdf4;
+            --badge-text: #166534;
+            --header-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --search-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #818cf8;
+            --accent-light: #a5b4fc;
+            --accent-bg: #1e1b4b;
+            --correct-bg: #064e3b;
+            --correct-border: #34d399;
+            --correct-text: #a7f3d0;
+            --section-bg: linear-gradient(135deg, #4f46e5, #7c3aed);
+            --shadow: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.3);
+            --border: #334155;
+            --reveal-bg: #334155;
+            --nav-bg: rgba(15,23,42,0.9);
+            --badge-bg: #064e3b;
+            --badge-text: #6ee7b7;
+            --header-gradient: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+            --search-bg: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* === HEADER === */
+        .hero {
+            background: var(--header-gradient);
+            padding: 50px 30px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 40%);
+            animation: shimmer 15s ease-in-out infinite alternate;
+        }
+        @keyframes shimmer {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-5%, 5%) rotate(3deg); }
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .hero .subtitle {
+            font-size: 16px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 400;
+        }
+        .hero .badge-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+        .hero .badge {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* === TOOLBAR === */
+        .toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            transition: background 0.3s;
+        }
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 10px 14px 10px 38px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            background: var(--search-bg);
+            color: var(--text);
+            transition: border 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        .search-box input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+        }
+        .search-box::before {
+            content: '\1F50D';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            opacity: 0.5;
+        }
+        .toolbar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .toolbar-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .toolbar-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .progress-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .progress-bar-mini {
+            width: 80px;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-bar-mini .fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        /* === SECTION NAV === */
+        .section-nav {
+            max-width: 960px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .section-nav-btn {
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .section-nav-btn:hover, .section-nav-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .section-nav-btn .count {
+            display: inline-block;
+            background: rgba(0,0,0,0.1);
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-left: 4px;
+            font-size: 11px;
+        }
+
+        /* === MAIN CONTAINER === */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px 20px 60px;
+        }
+
+        /* === SECTION TITLES === */
+        .section-title {
+            background: var(--section-bg);
+            color: #fff !important;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 14px 22px;
+            border-radius: 12px;
+            margin: 32px 0 18px;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow);
+        }
+        .section-title::before {
+            content: '\2726';
+            font-size: 16px;
+        }
+
+        /* === QUESTION CARDS === */
+        .question-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 0;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--accent);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        .question-card:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+        .question-card.revealed { border-left-color: var(--correct-border); }
+
+        .card-header {
+            padding: 22px 26px 18px;
+            cursor: pointer;
+        }
+
+        .q-number {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .q-number .section-badge {
+            background: var(--accent-bg);
+            color: var(--accent);
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .q-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .options {
+            padding: 0 26px 16px;
+        }
+        .options .opt {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 10px 14px 10px 40px;
+            position: relative;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            transition: background 0.2s;
+            cursor: default;
+        }
+        .options .opt:hover { background: var(--reveal-bg); }
+        .options .opt::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            transition: all 0.2s;
+        }
+        .options .opt.correct {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Quiz mode: hide correct indicators */
+        body.quiz-mode .options .opt.correct { font-weight: 400; color: var(--text-secondary); }
+        body.quiz-mode .correct-answer,
+        body.quiz-mode .explanation,
+        body.quiz-mode .reference { display: none; }
+        body.quiz-mode .options .opt.correct::before {
+            border-color: var(--border);
+            background: transparent;
+        }
+
+        /* Revealed state */
+        .question-card.revealed .options .opt.correct,
+        body:not(.quiz-mode) .options .opt.correct {
+            font-weight: 600;
+            color: var(--correct-text);
+            background: var(--correct-bg);
+        }
+        .question-card.revealed .options .opt.correct::before,
+        body:not(.quiz-mode) .options .opt.correct::before {
+            border-color: var(--correct-border);
+            background: var(--correct-border);
+            box-shadow: inset 0 0 0 2px var(--bg-card);
+        }
+        .question-card.revealed .correct-answer,
+        .question-card.revealed .explanation,
+        .question-card.revealed .reference {
+            display: block !important;
+        }
+
+        .answer-section { padding: 0 26px 22px; }
+
+        .correct-answer {
+            background: var(--correct-bg);
+            border: 1px solid var(--correct-border);
+            border-radius: 10px;
+            padding: 14px 18px;
+            font-size: 14px;
+        }
+        .correct-answer .label {
+            font-weight: 700;
+            color: var(--correct-text);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .correct-answer .label::before { content: '\2705'; font-size: 13px; }
+        .correct-answer .value { color: var(--correct-text); font-weight: 600; }
+
+        .explanation {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding: 14px 18px;
+            background: var(--reveal-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            line-height: 1.7;
+        }
+
+        .reference {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--accent);
+            font-style: italic;
+            padding-left: 4px;
+        }
+
+        /* Reveal button (quiz mode) */
+        .reveal-btn {
+            display: none;
+            margin: 12px 26px 20px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .reveal-btn:hover { background: var(--accent-light); }
+        .reveal-btn:active { transform: scale(0.97); }
+        body.quiz-mode .reveal-btn { display: inline-block; }
+        .question-card.revealed .reveal-btn { display: none !important; }
+
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 40px 20px 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        footer .footer-brand { font-weight: 700; color: var(--accent); }
+
+        /* === SCROLL TO TOP === */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, opacity 0.2s;
+            z-index: 99;
+        }
+        .scroll-top:hover { transform: scale(1.1); }
+        .scroll-top.visible { display: flex; }
+
+        /* No results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            display: none;
+        }
+        .no-results .emoji { font-size: 48px; margin-bottom: 12px; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 24px; }
+            .toolbar { gap: 8px; }
+            .search-box { min-width: 100%; }
+            .section-nav { gap: 6px; }
+            .section-nav-btn { font-size: 11px; padding: 5px 10px; }
+            .card-header { padding: 18px 18px 14px; }
+            .options { padding: 0 18px 14px; }
+            .answer-section { padding: 0 18px 18px; }
+        }
+
+        /* === PRINT === */
+        @media print {
+            .toolbar, .scroll-top, .reveal-btn, .section-nav, .hero::before { display: none !important; }
+            .hero { padding: 20px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .question-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+            .correct-answer, .explanation, .reference { display: block !important; }
+            body.quiz-mode .options .opt.correct { font-weight: 600 !important; color: #065f46 !important; }
+        }
+
+        /* === ANIMATIONS === */
+        .question-card {
+            animation: fadeUp 0.3s ease both;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .question-card:nth-child(2) { animation-delay: 0.02s; }
+        .question-card:nth-child(3) { animation-delay: 0.04s; }
+        .question-card:nth-child(4) { animation-delay: 0.06s; }
+        .question-card:nth-child(5) { animation-delay: 0.08s; }
+    </style>
+</head>
+<body>
+
+    <!-- HERO HEADER -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>AI-900 Question Bank</h1>
+            <div class="subtitle">Microsoft Azure AI Fundamentals &mdash; Practice Assessment</div>
+            <div class="badge-row">
+                <span class="badge">&#128218; 113 Questions</span>
+                <span class="badge">&#9989; Correct Answers</span>
+                <span class="badge">&#128161; Explanations</span>
+                <span class="badge">&#128279; References</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search questions, topics, services..." autocomplete="off">
+        </div>
+        <button class="toolbar-btn" id="quizToggle" onclick="toggleQuizMode()">&#127919; Quiz Mode</button>
+        <button class="toolbar-btn" id="themeToggle" onclick="toggleTheme()">&#127769; Dark</button>
+        <div class="progress-pill">
+            <span id="progressText">0 / 113</span>
+            <div class="progress-bar-mini"><div class="fill" id="progressFill"></div></div>
+        </div>
+    </div>
+
+    <!-- SECTION NAV -->
+    <div class="section-nav" id="sectionNav">
+        <button class="section-nav-btn active" onclick="filterSection('all')">All<span class="count">113</span></button>
+        <button class="section-nav-btn" onclick="filterSection(1)">S1: AI Workloads</button>
+        <button class="section-nav-btn" onclick="filterSection(2)">S2: Machine Learning</button>
+        <button class="section-nav-btn" onclick="filterSection(3)">S3: Computer Vision</button>
+        <button class="section-nav-btn" onclick="filterSection(4)">S4: NLP</button>
+        <button class="section-nav-btn" onclick="filterSection(5)">S5: Generative AI</button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container" id="mainContainer">
+
+    <div class="section-title">Section 1: Describe Artificial Intelligence Workloads and Considerations</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 1 of 113</div>
+        <div class="q-text">Which natural language processing (NLP) workload is used to generate closed caption text for live presentations?</div>
+        <div class="options">
+            <div class="opt">Azure Translator in Foundry Tools</div>
+            <div class="opt correct">Azure Speech in Foundry Tools</div>
+            <div class="opt">Azure Vision in Foundry Tools</div>
+            <div class="opt">Azure Language in Foundry Tools</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Azure Speech in Foundry Tools</div>
+        </div>
+        <div class="explanation">Azure Speech in Foundry Tools provides speech-to-text and text-to-speech capabilities through speech recognition and synthesis. You can use prebuilt and custom models for transcribing audio to text, identifying speakers, creating custom voices, and more.</div>
+        <div class="reference">Ref: Introduction to computer vision concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 2 of 113</div>
+        <div class="q-text">Which type of artificial intelligence (AI) workload provides the ability to classify individual pixels in an image depending on the object that they represent?</div>
+        <div class="options">
+            <div class="opt">Image analysis</div>
+            <div class="opt correct">Semantic segmentation</div>
+            <div class="opt">Object detection</div>
+            <div class="opt">Image classification</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Semantic segmentation</div>
+        </div>
+        <div class="explanation">Semantic segmentation provides the ability to classify individual pixels in an image depending on the object that they represent. Other image-processing workloads process images but produce different outcomes.</div>
+        <div class="reference">Ref: Understand computer vision &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 3 of 113</div>
+        <div class="q-text">Which type of service provides a platform for conversational artificial intelligence (AI)?</div>
+        <div class="options">
+            <div class="opt correct">Azure AI Bot Service</div>
+            <div class="opt">Azure Translator in Foundry Tools</div>
+            <div class="opt">Azure Vision in Foundry Tools</div>
+            <div class="opt">Azure Document Intelligence in Foundry Tools</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Azure AI Bot Service</div>
+        </div>
+        <div class="explanation">Azure AI Bot Service provides a platform for conversational AI. Azure Translator is part of NLP but not a conversational platform. Azure Vision deals with image processing. Azure Document Intelligence extracts information from forms and invoices.</div>
+        <div class="reference">Ref: Understand natural language processing &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 4 of 113</div>
+        <div class="q-text">Which AI service can be integrated into chat applications and generate content in the form of text?</div>
+        <div class="options">
+            <div class="opt correct">Azure OpenAI in Foundry Models</div>
+            <div class="opt">Azure Vision in Foundry Tools</div>
+            <div class="opt">Azure Language in Foundry Tools</div>
+            <div class="opt">Azure Speech in Foundry Tools</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Azure OpenAI in Foundry Models</div>
+        </div>
+        <div class="explanation">Azure OpenAI is the only service capable of generating text that can be used in chat applications to create conversational experiences.</div>
+        <div class="reference">Ref: Understand generative AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 5 of 113</div>
+        <div class="q-text">Which artificial intelligence (AI) workload scenario is an example of natural language processing (NLP)?</div>
+        <div class="options">
+            <div class="opt correct">Extracting key phrases from a business insights report</div>
+            <div class="opt">Predicting whether customers are likely to buy a product based on previous purchases</div>
+            <div class="opt">Monitoring for sudden increases in quantity of failed sign-in attempts</div>
+            <div class="opt">Identifying objects in landscape images</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Extracting key phrases from a business insights report</div>
+        </div>
+        <div class="explanation">Extracting key phrases from text to identify the main terms is an NLP workload. Predicting purchases requires ML. Monitoring failed sign-ins is anomaly detection. Identifying objects in images is computer vision.</div>
+        <div class="reference">Ref: Introduction to natural language processing concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 6 of 113</div>
+        <div class="q-text">You need an AI search solution that will include searching text in various types of documents, such as images. Which type of AI workload is this?</div>
+        <div class="options">
+            <div class="opt correct">Data mining</div>
+            <div class="opt">Conversational AI</div>
+            <div class="opt">Computer vision</div>
+            <div class="opt">Semantic segmentation</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Data mining</div>
+        </div>
+        <div class="explanation">Data mining workloads primarily focus on the searching and indexing of data. Computer vision extracts info from images but is not a search/indexing solution. Conversational AI creates chatbots. Semantic segmentation classifies pixels.</div>
+        <div class="reference">Ref: Microsoft Azure AI Fundamentals: Explore knowledge mining &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 7 of 113</div>
+        <div class="q-text">Which principle of responsible artificial intelligence (AI) raises awareness about the limitations of AI-based solutions?</div>
+        <div class="options">
+            <div class="opt">Accountability</div>
+            <div class="opt correct">Transparency</div>
+            <div class="opt">Privacy and security</div>
+            <div class="opt">Reliability and safety</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Transparency</div>
+        </div>
+        <div class="explanation">Transparency provides clarity regarding the purpose of AI solutions, the way they work, as well as their limitations. Privacy/security, reliability/safety, and accountability focus on capabilities rather than raising awareness about limitations.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 8 of 113</div>
+        <div class="q-text">Which principle of responsible artificial intelligence (AI) involves evaluating and mitigating the bias introduced by the features of a model?</div>
+        <div class="options">
+            <div class="opt correct">Fairness</div>
+            <div class="opt">Privacy</div>
+            <div class="opt">Transparency</div>
+            <div class="opt">Accountability</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Fairness</div>
+        </div>
+        <div class="explanation">Fairness involves evaluating and mitigating the bias introduced by the features of a model. Privacy ensures privacy provisions. Transparency provides clarity on purpose and limitations. Accountability ensures ethical and legal standards.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 9 of 113</div>
+        <div class="q-text">Which principle of responsible AI is applied in the design of an AI system to ensure that users understand constraints and limitations of AI?</div>
+        <div class="options">
+            <div class="opt correct">Transparency</div>
+            <div class="opt">Inclusiveness</div>
+            <div class="opt">Fairness</div>
+            <div class="opt">Privacy and security</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Transparency</div>
+        </div>
+        <div class="explanation">The transparency principle states that AI systems must be designed so users are fully aware of the purpose, how they work, and their limitations. Inclusiveness empowers people. Fairness ensures fair treatment. Privacy/security ensures systems are secure.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 10 of 113</div>
+        <div class="q-text">Which two principles of responsible AI are most important when designing an AI system to manage healthcare data? (Select two)</div>
+        <div class="options">
+            <div class="opt correct">Accountability</div>
+            <div class="opt correct">Privacy and security</div>
+            <div class="opt">Fairness</div>
+            <div class="opt">Inclusiveness</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Accountability &nbsp;&bull;&nbsp; 2. Privacy and security</div>
+        </div>
+        <div class="explanation">Accountability ensures AI systems meet applicable ethical and legal standards. Privacy and security ensures healthcare data privacy is of the highest importance, including anonymizing data where applicable.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 2: Describe Fundamental Principles of Machine Learning on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 11 of 113</div>
+        <div class="q-text">You need to identify numerical values that represent the probability of humans developing diabetes based on age and body fat percentage. Which type of machine learning model should you use?</div>
+        <div class="options">
+            <div class="opt">Multiple linear regression</div>
+            <div class="opt correct">Logistic regression</div>
+            <div class="opt">Linear regression</div>
+            <div class="opt">Hierarchical clustering</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Logistic regression</div>
+        </div>
+        <div class="explanation">Logistic regression is a type of classification model that returns either a Boolean value or a categorical decision. Multiple linear regression models relationships between features and a label. Hierarchical clustering groups similar data points.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 12 of 113</div>
+        <div class="q-text">Which type of machine learning algorithm groups observations based on the similarities of features?</div>
+        <div class="options">
+            <div class="opt correct">Clustering</div>
+            <div class="opt">Regression</div>
+            <div class="opt">Classification</div>
+            <div class="opt">Supervised learning</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Clustering</div>
+        </div>
+        <div class="explanation">Clustering algorithms group data points that have similar characteristics. Regression predicts numeric values. Classification predicts predefined categories. Supervised learning includes regression and classification but not clustering.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 13 of 113</div>
+        <div class="q-text">A healthcare organization has bone fracture scans categorized by predefined fracture types and wants ML to detect the different types for new scans. Which type of machine learning is this?</div>
+        <div class="options">
+            <div class="opt">Clustering</div>
+            <div class="opt correct">Classification</div>
+            <div class="opt">Regression</div>
+            <div class="opt">Featurization</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Classification</div>
+        </div>
+        <div class="explanation">Classification predicts categories of data &mdash; which category or class an item belongs to. A model trained with labeled data can determine the type of bone fracture in a new unlabeled scan. Regression predicts numeric values. Clustering analyzes unlabeled data.</div>
+        <div class="reference">Ref: Clustering &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 14 of 113</div>
+        <div class="q-text">A retailer wants to group online shoppers with similar attributes for targeted marketing campaigns for new product launches. Which type of machine learning is this?</div>
+        <div class="options">
+            <div class="opt">Classification</div>
+            <div class="opt correct">Clustering</div>
+            <div class="opt">Multiclass classification</div>
+            <div class="opt">Regression</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Clustering</div>
+        </div>
+        <div class="explanation">Clustering analyzes unlabeled data to find similarities and groups similar data together. The company can group customers based on demographics and shopping behaviors, then recommend products to likely interested groups.</div>
+        <div class="reference">Ref: Regression &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 15 of 113</div>
+        <div class="q-text">Which feature makes regression an example of supervised machine learning?</div>
+        <div class="options">
+            <div class="opt correct">Use of historical data with known label values to train a model</div>
+            <div class="opt">Use of randomly generated data for training</div>
+            <div class="opt">Use of unlabeled data for training</div>
+            <div class="opt">Grouping data points with similar characteristics</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Use of historical data with known label values to train a model</div>
+        </div>
+        <div class="explanation">Regression is supervised machine learning because it uses historical data with known label values to train a model. It does not rely on randomly generated data.</div>
+        <div class="reference">Ref: What is regression? &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 16 of 113</div>
+        <div class="q-text">In a regression machine learning algorithm, what are the characteristics of features and labels in a training dataset?</div>
+        <div class="options">
+            <div class="opt correct">Known feature and label values</div>
+            <div class="opt">Known feature values and unknown label values</div>
+            <div class="opt">Unknown feature and label values</div>
+            <div class="opt">Unknown feature values and known label values</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Known feature and label values</div>
+        </div>
+        <div class="explanation">In a regression machine learning algorithm, a training set contains known feature and label values.</div>
+        <div class="reference">Ref: What is regression? &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 17 of 113</div>
+        <div class="q-text">A company uses ML to predict aspects of its e-scooter hire service dependent on weather. Which two attributes are the features? (Select two)</div>
+        <div class="options">
+            <div class="opt">E-scooter hires</div>
+            <div class="opt correct">Weather temperature</div>
+            <div class="opt correct">Weekday or weekend</div>
+            <div class="opt">E-scooter battery levels</div>
+            <div class="opt">Distance traveled</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Weather temperature &nbsp;&bull;&nbsp; 2. Weekday or weekend</div>
+        </div>
+        <div class="explanation">Weather temperature and weekday/weekend are input features. E-scooter battery levels, number of hires, and distance traveled are numeric labels the model attempts to predict.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 18 of 113</div>
+        <div class="q-text">What should you do after preparing a dataset and before training the machine learning model?</div>
+        <div class="options">
+            <div class="opt">Normalize the data</div>
+            <div class="opt correct">Split data into training and validation datasets</div>
+            <div class="opt">Summarize the data</div>
+            <div class="opt">Clean missing data</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Split data into training and validation datasets</div>
+        </div>
+        <div class="explanation">Splitting data gives you two datasets: the training dataset and the validation dataset used to evaluate the trained model. Normalizing/summarizing is part of data transformation. Cleaning missing data is part of data preparation.</div>
+        <div class="reference">Ref: Regression &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 19 of 113</div>
+        <div class="q-text">Which three supervised machine learning models can you train by using automated machine learning (automated ML) in Azure Machine Learning studio? (Select three)</div>
+        <div class="options">
+            <div class="opt correct">Classification</div>
+            <div class="opt">Clustering</div>
+            <div class="opt correct">Regression</div>
+            <div class="opt correct">Time-series forecasting</div>
+            <div class="opt">Inference pipeline</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Classification &nbsp;&bull;&nbsp; 2. Regression &nbsp;&bull;&nbsp; 3. Time-series forecasting</div>
+        </div>
+        <div class="explanation">Automated ML supports classification, regression, and time-series forecasting &mdash; all supervised learning. Clustering is unsupervised and automated ML only works with supervised learning algorithms. Inference pipeline is not a ML model.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 3: Describe Features of Computer Vision Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 20 of 113</div>
+        <div class="q-text">Which AI technique should be used to extract the name of a store from a photograph displaying the store front?</div>
+        <div class="options">
+            <div class="opt correct">Optical character recognition (OCR)</div>
+            <div class="opt">Natural language processing (NLP)</div>
+            <div class="opt">Image classification</div>
+            <div class="opt">Semantic segmentation</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Optical character recognition (OCR)</div>
+        </div>
+        <div class="explanation">OCR detects and reads text in images. NLP deals with written/spoken language meaning. Image classification classifies images by contents. Semantic segmentation classifies individual pixels.</div>
+        <div class="reference">Ref: Understand computer vision &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 21 of 113</div>
+        <div class="q-text">Which computer vision solution provides the ability to identify a person's age based on a photograph?</div>
+        <div class="options">
+            <div class="opt">Semantic segmentation</div>
+            <div class="opt correct">Facial detection</div>
+            <div class="opt">Image classification</div>
+            <div class="opt">Object detection</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Facial detection</div>
+        </div>
+        <div class="explanation">Facial detection detects and analyzes human faces in an image, including identifying age. Image classification classifies images by contents. Object detection generates bounding boxes. Semantic segmentation classifies pixels.</div>
+        <div class="reference">Ref: Introduction to computer vision concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 22 of 113</div>
+        <div class="q-text">Which process allows you to use optical character recognition (OCR)?</div>
+        <div class="options">
+            <div class="opt correct">Digitizing medical records</div>
+            <div class="opt">Identifying wildlife in an image</div>
+            <div class="opt">Identifying a user requesting access to a laptop</div>
+            <div class="opt">Translating speech to text</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Digitizing medical records</div>
+        </div>
+        <div class="explanation">OCR extracts printed or handwritten text from images &mdash; useful for extracting text from scanned medical records to produce digital archives from paper documents.</div>
+        <div class="reference">Ref: Get started with natural language processing in Azure &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 23 of 113</div>
+        <div class="q-text">Which process allows you to use object detection?</div>
+        <div class="options">
+            <div class="opt correct">Tracking livestock in a field</div>
+            <div class="opt">Sentiment analysis</div>
+            <div class="opt">Employee access to a secure building</div>
+            <div class="opt">Extracting text from manuscripts</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Tracking livestock in a field</div>
+        </div>
+        <div class="explanation">Object detection can track livestock animals to support their safety and welfare. Sentiment analysis returns numeric values from text. Building access uses facial recognition. Extracting text uses OCR.</div>
+        <div class="reference">Ref: What is object detection? &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 24 of 113</div>
+        <div class="q-text">What allows you to identify different types of bone fractures in X-ray images?</div>
+        <div class="options">
+            <div class="opt correct">Image classification</div>
+            <div class="opt">Object detection</div>
+            <div class="opt">Conversational AI</div>
+            <div class="opt">Facial detection</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Image classification</div>
+        </div>
+        <div class="explanation">Image classification evaluates X-ray images to classify specific bone fracture types, improving diagnosis and treatment plans. Object detection returns identified objects. Conversational AI interacts via natural language. Facial detection detects faces.</div>
+        <div class="reference">Ref: Introduction to computer vision concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 25 of 113</div>
+        <div class="q-text">What allows you to identify different vehicle types in traffic monitoring images?</div>
+        <div class="options">
+            <div class="opt">Image classification</div>
+            <div class="opt correct">Object detection</div>
+            <div class="opt">Linear regression</div>
+            <div class="opt">OCR</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Object detection</div>
+        </div>
+        <div class="explanation">Object detection evaluates traffic monitoring images to classify specific vehicle types (car, bus, cyclist). Image classification is concerned with the primary contents of an image. Linear regression trains regression models. OCR extracts text.</div>
+        <div class="reference">Ref: Detect objects in images with the Custom Vision service &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 26 of 113</div>
+        <div class="q-text">Which feature of computer vision involves associating an image with metadata that summarizes the attributes of the image?</div>
+        <div class="options">
+            <div class="opt">Categorizing</div>
+            <div class="opt correct">Tagging</div>
+            <div class="opt">Detecting image types</div>
+            <div class="opt">Content organization</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Tagging</div>
+        </div>
+        <div class="explanation">Tagging associates an image with metadata summarizing its attributes. Detecting image types identifies clip art or line drawings. Content organization identifies people/objects. Categorizing associates contents with a limited set of categories.</div>
+        <div class="reference">Ref: Introduction to computer vision concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 27 of 113</div>
+        <div class="q-text">Which three parts of the machine learning process does the Azure Vision in Foundry Tools eliminate the need for? (Select three)</div>
+        <div class="options">
+            <div class="opt">Azure resource provisioning</div>
+            <div class="opt correct">Choosing a model</div>
+            <div class="opt correct">Evaluating a model</div>
+            <div class="opt correct">Training a model</div>
+            <div class="opt">Inferencing</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Choosing a model &nbsp;&bull;&nbsp; 2. Evaluating a model &nbsp;&bull;&nbsp; 3. Training a model</div>
+        </div>
+        <div class="explanation">The computer vision service eliminates the need for choosing, training, and evaluating a model by providing pre-trained models. You still need to create an Azure resource, and inferencing is still involved.</div>
+        <div class="reference">Ref: Introduction to computer vision concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 28 of 113</div>
+        <div class="q-text">Which additional piece of information is included with each phrase returned by an image description task of Azure Vision in Foundry Tools?</div>
+        <div class="options">
+            <div class="opt">Key</div>
+            <div class="opt correct">Confidence score</div>
+            <div class="opt">Endpoint</div>
+            <div class="opt">Bounding box coordinates</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Confidence score</div>
+        </div>
+        <div class="explanation">Each phrase returned includes a confidence score. An endpoint and key are needed to access the service but are not returned with results. Bounding box coordinates are returned by object detection, not image description.</div>
+        <div class="reference">Ref: Introduction to computer vision concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 29 of 113</div>
+        <div class="q-text">When using Azure Face in Foundry Tools, what should you use to perform one-to-many or one-to-one face matching? (Select two)</div>
+        <div class="options">
+            <div class="opt">Custom Vision</div>
+            <div class="opt">Face attributes</div>
+            <div class="opt correct">Face identification</div>
+            <div class="opt correct">Face verification</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Face identification &nbsp;&bull;&nbsp; 2. Face verification</div>
+        </div>
+        <div class="explanation">Face identification handles one-to-many matching against a secure repository. Face verification handles one-to-one matching to verify if two faces are the same individual. Face attributes, find similar, and Custom Vision do not verify identity.</div>
+        <div class="reference">Ref: What is the Azure Face service? &ndash; Azure Cognitive Services | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 4: Describe Features of Natural Language Processing (NLP) Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 30 of 113</div>
+        <div class="q-text">Which natural language processing (NLP) technique normalizes words before counting them?</div>
+        <div class="options">
+            <div class="opt correct">Stemming</div>
+            <div class="opt">Frequency analysis</div>
+            <div class="opt">N-grams</div>
+            <div class="opt">Vectorization</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Stemming</div>
+        </div>
+        <div class="explanation">Stemming normalizes words before counting them. Frequency analysis counts word appearances. N-grams extend frequency analysis to multi-term phrases. Vectorization captures semantic relationships.</div>
+        <div class="reference">Ref: Introduction to NLP concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 31 of 113</div>
+        <div class="q-text">Which NLP technique assigns values to words such as &ldquo;plant&rdquo; and &ldquo;flower&rdquo; so that they are considered closer to each other than a word such as &ldquo;airplane&rdquo;?</div>
+        <div class="options">
+            <div class="opt">N-grams</div>
+            <div class="opt correct">Vectorization</div>
+            <div class="opt">Lemmatization</div>
+            <div class="opt">Frequency analysis</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Vectorization</div>
+        </div>
+        <div class="explanation">Vectorization captures semantic relationships between words by assigning them to locations in n-dimensional space. Lemmatization/stemming normalizes words. Frequency analysis counts word appearances. N-grams extend frequency analysis.</div>
+        <div class="reference">Ref: Introduction to NLP concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 32 of 113</div>
+        <div class="q-text">Which two types of files can be imported to generate a knowledge base for use with a Microsoft Foundry Agent? (Select two)</div>
+        <div class="options">
+            <div class="opt">CSV</div>
+            <div class="opt correct">DOC</div>
+            <div class="opt correct">PDF</div>
+            <div class="opt">ZIP</div>
+            <div class="opt">MP4</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. DOC &nbsp;&bull;&nbsp; 2. PDF</div>
+        </div>
+        <div class="explanation">Structured and unstructured DOC and PDF files can be imported. ZIP files must be extracted first. MP4 and CSV files are not supported for generating Q&amp;A pairs.</div>
+        <div class="reference">Ref: Get started with natural language processing in Azure &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 33 of 113</div>
+        <div class="q-text">Which Azure AI Service for Language feature can be used to analyze online user reviews to identify whether users view a product positively or negatively?</div>
+        <div class="options">
+            <div class="opt correct">Sentiment analysis</div>
+            <div class="opt">Named entity recognition</div>
+            <div class="opt">Key phrase extraction</div>
+            <div class="opt">Language detection</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Sentiment analysis</div>
+        </div>
+        <div class="explanation">Sentiment analysis provides sentiment labels (negative, neutral, positive) based on confidence scores from text analysis, making it suitable for product review sentiment.</div>
+        <div class="reference">Ref: Introduction to natural language processing concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 34 of 113</div>
+        <div class="q-text">Which type of translation does the Azure Translator in Foundry Tools service support?</div>
+        <div class="options">
+            <div class="opt">Speech-to-text</div>
+            <div class="opt correct">Text-to-text</div>
+            <div class="opt">Text-to-speech</div>
+            <div class="opt">Speech-to-speech</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Text-to-text</div>
+        </div>
+        <div class="explanation">Azure Translator supports text-to-text translation only. It does not support speech-to-text, text-to-speech, or speech-to-speech translation.</div>
+        <div class="reference">Ref: Get started with natural language processing in Azure &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 35 of 113</div>
+        <div class="q-text">Which Azure resource provides direct access to both Azure Translator in Foundry Tools and Azure AI Speech services through a single endpoint and authentication key?</div>
+        <div class="options">
+            <div class="opt">Azure Language in Foundry Tools service</div>
+            <div class="opt correct">Microsoft Foundry</div>
+            <div class="opt">Machine Learning service</div>
+            <div class="opt">Azure AI Bot Service</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Microsoft Foundry</div>
+        </div>
+        <div class="explanation">Azure AI Services (Microsoft Foundry) provides access to both Translator and Speech through a single endpoint and key. Azure Language service accesses only Language. Machine Learning is for ML models. Bot Service is for bots.</div>
+        <div class="reference">Ref: Get started with natural language processing in Azure &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 36 of 113</div>
+        <div class="q-text">When using Azure AI Service for Language, what should you use to provide further information online about entities extracted from a text?</div>
+        <div class="options">
+            <div class="opt">Key phrase extraction</div>
+            <div class="opt correct">Entity linking</div>
+            <div class="opt">Named entity recognition</div>
+            <div class="opt">Text translation</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Entity linking</div>
+        </div>
+        <div class="explanation">Entity Linking identifies and disambiguates entities in text, providing links for further information. Key phrase extraction extracts main concepts. Named entity recognition cannot provide links. Text translation is part of Translator.</div>
+        <div class="reference">Ref: Introduction to natural language processing concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 37 of 113</div>
+        <div class="q-text">Which feature of the Azure Speech in Foundry Tools service can identify distinct user voices?</div>
+        <div class="options">
+            <div class="opt correct">Speech recognition</div>
+            <div class="opt">Speech synthesis</div>
+            <div class="opt">Speech translation</div>
+            <div class="opt">Language identification</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Speech recognition</div>
+        </div>
+        <div class="explanation">Speech recognition uses audio data to analyze speech and determine recognizable patterns mapped to distinct user voices. Speech synthesis converts text to speech. Speech translation handles multilanguage translation. Language identification identifies spoken languages.</div>
+        <div class="reference">Ref: Speaker recognition overview &ndash; Speech service | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 38 of 113</div>
+        <div class="q-text">What are the two main schema components of a Language Understanding app model? (Select two)</div>
+        <div class="options">
+            <div class="opt correct">Entities</div>
+            <div class="opt">Entity linking</div>
+            <div class="opt correct">Intents</div>
+            <div class="opt">Utterances</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Entities &nbsp;&bull;&nbsp; 2. Intents</div>
+        </div>
+        <div class="explanation">The two main schema components are entities and intents. Utterances are important for training but not part of the schema. Entity Linking is part of the entity recognition service and returns disambiguation links.</div>
+        <div class="reference">Ref: Get started with natural language processing in Microsoft Foundry</div>
+    </div>
+
+    <div class="section-title">Section 5: Describe Features of Generative AI Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 39 of 113</div>
+        <div class="q-text">At which layer can you apply content filters to suppress prompts and responses for a responsible generative AI solution?</div>
+        <div class="options">
+            <div class="opt correct">Safety system</div>
+            <div class="opt">Metaprompt and grounding</div>
+            <div class="opt">Model</div>
+            <div class="opt">User experience</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Safety system</div>
+        </div>
+        <div class="explanation">The safety system layer includes platform-level configurations that help mitigate harm, including content filters that apply criteria based on four severity levels (safe, low, medium, high) for four categories of potential harm (hate, sexual, violence, self-harm).</div>
+        <div class="reference">Ref: Responsible generative AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 40 of 113</div>
+        <div class="q-text">[Answer choice] can be used to identify constraints and styles for the responses of a generative AI model.</div>
+        <div class="options">
+            <div class="opt correct">System messages</div>
+            <div class="opt">Grounding data</div>
+            <div class="opt">Temperature settings</div>
+            <div class="opt">Content filters</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">System messages</div>
+        </div>
+        <div class="explanation">System messages set the context for the model by describing expectations. Based on system messages, the model knows how to respond to prompts.</div>
+        <div class="reference">Ref: Improve generative AI responses with prompt engineering &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 41 of 113</div>
+        <div class="q-text">Which two scenarios are common use cases for generative AI? (Select two)</div>
+        <div class="options">
+            <div class="opt">Anomaly detection</div>
+            <div class="opt correct">Image generation</div>
+            <div class="opt correct">Summarization</div>
+            <div class="opt">Translation</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Image generation &nbsp;&bull;&nbsp; 2. Summarization</div>
+        </div>
+        <div class="explanation">Both involve producing new content &mdash; a core capability of generative AI. Image generation creates new visual content; summarization generates condensed text. Anomaly detection is traditional ML. Translation is commonly categorized as general NLP.</div>
+        <div class="reference">Ref: Generative AI and agents</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 42 of 113</div>
+        <div class="q-text">What are two capabilities of generative AI models? (Select two)</div>
+        <div class="options">
+            <div class="opt correct">Generating new content based on training data</div>
+            <div class="opt correct">Summarizing text and generating translations</div>
+            <div class="opt">Identifying objects in images</div>
+            <div class="opt">Classifying data into predefined categories</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Generating new content based on training data &nbsp;&bull;&nbsp; 2. Summarizing text and generating translations</div>
+        </div>
+        <div class="explanation">Generative AI creates or transforms content (text, images, code) including summarization and translation. Identifying objects in images is computer vision. Classifying data is classification. Detecting patterns for prediction is traditional ML.</div>
+        <div class="reference">Ref: Generative AI with Azure Database for PostgreSQL</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 43 of 113</div>
+        <div class="q-text">Which two capabilities are examples of a GPT model? (Select two)</div>
+        <div class="options">
+            <div class="opt">Generate closed captions in real-time from a video</div>
+            <div class="opt">Synthesize speech</div>
+            <div class="opt correct">Create natural language</div>
+            <div class="opt correct">Understand natural language</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Create natural language &nbsp;&bull;&nbsp; 2. Understand natural language</div>
+        </div>
+        <div class="explanation">GPT models are excellent at both understanding and creating natural language. They take in natural language and generate responses. Closed captions and speech synthesis are handled by other services.</div>
+        <div class="reference">Ref: What is generative AI? &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 44 of 113</div>
+        <div class="q-text">Which generative AI model is used to generate images based on natural language prompts?</div>
+        <div class="options">
+            <div class="opt correct">DALL-E</div>
+            <div class="opt">GPT-4</div>
+            <div class="opt">Embeddings</div>
+            <div class="opt">Whisper</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">DALL-E</div>
+        </div>
+        <div class="explanation">DALL-E generates images from natural language. GPT-4/3.5 handle natural language and code, not images. Embeddings convert text to vectors. Whisper transcribes speech to text.</div>
+        <div class="reference">Ref: Azure OpenAI Service models &ndash; Azure OpenAI | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 45 of 113</div>
+        <div class="q-text">[Answer choice] can search, classify, and compare sources of text for similarity.</div>
+        <div class="options">
+            <div class="opt">Machine learning</div>
+            <div class="opt correct">Embeddings</div>
+            <div class="opt">GPT-4</div>
+            <div class="opt">DALL-E</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Embeddings</div>
+        </div>
+        <div class="explanation">Embeddings is an Azure OpenAI model that converts text into numerical vectors for analysis. Embeddings can search, classify, and compare sources of text for similarity.</div>
+        <div class="reference">Ref: Responsible generative AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 46 of 113</div>
+        <div class="q-text">Which part of speech synthesis in NLP involves breaking text into individual words such that each word can be assigned phonetic sounds?</div>
+        <div class="options">
+            <div class="opt correct">Tokenization</div>
+            <div class="opt">Transcribing</div>
+            <div class="opt">Key phrase extraction</div>
+            <div class="opt">Lemmatization</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Tokenization</div>
+        </div>
+        <div class="explanation">Tokenization breaks text into individual words for phonetic sound assignment. Transcribing is part of speech recognition. Key phrase extraction and lemmatization are part of language processing, not speech synthesis.</div>
+        <div class="reference">Ref: Recognize and synthesize speech &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 47 of 113</div>
+        <div class="q-text">Microsoft Foundry can be used to [Answer choice].</div>
+        <div class="options">
+            <div class="opt correct">Build, customize, and manage AI apps and agents</div>
+            <div class="opt">Monitor virtual machine performance</div>
+            <div class="opt">Store and version structured training data</div>
+            <div class="opt">Train large language models (LLMs) from scratch</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Build, customize, and manage AI apps and agents</div>
+        </div>
+        <div class="explanation">Microsoft Foundry is an end-to-end platform for developing and managing generative AI solutions. Monitoring VMs, storing training data, and training LLMs are provided by other Azure services.</div>
+        <div class="reference">Ref: Understand generative AI development in Foundry</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 48 of 113</div>
+        <div class="q-text">For which audience is Microsoft Foundry primarily intended?</div>
+        <div class="options">
+            <div class="opt correct">AI developers and technical decision-makers that build generative AI apps and custom copilots</div>
+            <div class="opt">Business users looking for a no-code ML platform</div>
+            <div class="opt">Data scientists doing large-scale model training</div>
+            <div class="opt">Developers integrating models into Windows applications</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">AI developers and technical decision-makers that build generative AI apps and custom copilots</div>
+        </div>
+        <div class="explanation">Microsoft Foundry is for AI developers and technical decision-makers building generative AI applications and custom copilot experiences using managed Azure services and tools.</div>
+        <div class="reference">Ref: What is Microsoft Foundry? &ndash; Understand Foundry capabilities</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 49 of 113</div>
+        <div class="q-text">What does the Microsoft Foundry models catalog provide?</div>
+        <div class="options">
+            <div class="opt">A catalog of pretrained datasets used to train generative AI models</div>
+            <div class="opt correct">A catalog of generative AI models that you can discover and compare</div>
+            <div class="opt">Model management capabilities such as monitoring or tuning</div>
+            <div class="opt">Prebuilt applications ready for deployment</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">A catalog of generative AI models that you can discover and compare</div>
+        </div>
+        <div class="explanation">The models catalog provides a centralized catalog of generative AI models that can be discovered and compared when designing AI solutions. It does not provide datasets, monitoring/tuning, or prebuilt applications.</div>
+        <div class="reference">Ref: Understand Foundry's model catalog &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 50 of 113</div>
+        <div class="q-text">You plan to build a generative AI chatbot for medical information. You need an Azure service with the latest generative AI models, built-in safety systems and responsible AI controls. Which service should you use?</div>
+        <div class="options">
+            <div class="opt">Azure Language in Foundry Tools</div>
+            <div class="opt correct">Azure OpenAI in Foundry Models</div>
+            <div class="opt">Azure Vision in Foundry Tools</div>
+            <div class="opt">Azure Machine Learning</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Azure OpenAI in Foundry Models</div>
+        </div>
+        <div class="explanation">Azure OpenAI in Foundry Models provides managed access to state-of-the-art generative AI models with built-in safety systems and responsible AI controls. Azure Language and Vision handle specific workloads. Azure Machine Learning focuses on model training.</div>
+        <div class="reference">Ref: Foundry Models sold directly by Azure &ndash; Azure OpenAI | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 1: Describe Artificial Intelligence Workloads and Considerations</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 51 of 113</div>
+        <div class="q-text">Which type of artificial intelligence (AI) workload has the primary purpose of making large amounts of data searchable?</div>
+        <div class="options">
+            <div class="opt correct">Knowledge mining</div>
+            <div class="opt">Computer vision</div>
+            <div class="opt">Natural language processing</div>
+            <div class="opt">Conversational AI</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Knowledge mining</div>
+        </div>
+        <div class="explanation">Knowledge mining is an artificial intelligence (AI) workload that has the purpose of making large amounts of data searchable. While other workloads leverage indexing for faster access to large amounts of data, this is not their primary purpose.</div>
+        <div class="reference">Ref: Understand knowledge mining &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 52 of 113</div>
+        <div class="q-text">Which two artificial intelligence (AI) workload scenarios are examples of natural language processing (NLP)? (Select two)</div>
+        <div class="options">
+            <div class="opt correct">Performing sentiment analysis on social media data</div>
+            <div class="opt correct">Translating text between different languages from product reviews</div>
+            <div class="opt">Identifying objects in landscape images</div>
+            <div class="opt">Predicting whether customers are likely to buy a product</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Performing sentiment analysis on social media data &nbsp;&bull;&nbsp; 2. Translating text between different languages from product reviews</div>
+        </div>
+        <div class="explanation">Translating text between different languages from product reviews is an NLP workload that uses the Azure Translator in Foundry Tools service. Performing sentiment analysis on social media data uses the sentiment analysis feature of the Azure AI Service for Language, providing sentiment labels such as negative, neutral, and positive.</div>
+        <div class="reference">Ref: Microsoft Azure AI Fundamentals: Explore natural language processing &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 53 of 113</div>
+        <div class="q-text">Which two artificial intelligence (AI) workload features are part of the Azure Vision in Foundry Tools service? (Select two)</div>
+        <div class="options">
+            <div class="opt">Key phrase extraction</div>
+            <div class="opt correct">Optical character recognition (OCR)</div>
+            <div class="opt correct">Spatial analysis</div>
+            <div class="opt">Sentiment analysis</div>
+            <div class="opt">Entity recognition</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Optical character recognition (OCR) &nbsp;&bull;&nbsp; 2. Spatial analysis</div>
+        </div>
+        <div class="explanation">OCR and Spatial Analysis are part of the Azure Vision in Foundry Tools service. Sentiment analysis, entity recognition, and key phrase extraction are not part of the computer vision service.</div>
+        <div class="reference">Ref: Microsoft Azure AI Fundamentals: Explore computer vision &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 54 of 113</div>
+        <div class="q-text">Which principle of responsible artificial intelligence (AI) plays the primary role when implementing an AI solution that meets qualifications for business loan approvals?</div>
+        <div class="options">
+            <div class="opt correct">Fairness</div>
+            <div class="opt">Transparency</div>
+            <div class="opt">Inclusiveness</div>
+            <div class="opt">Reliability and safety</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Fairness</div>
+        </div>
+        <div class="explanation">Fairness is meant to ensure that AI models do not unintentionally incorporate a bias based on criteria such as gender or ethnicity. Transparency does not apply since banks commonly use proprietary models. Inclusiveness is out of scope since not everyone qualifies for a loan. Safety is not a primary consideration since there is no direct threat to human life or health.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 55 of 113</div>
+        <div class="q-text">A bank is developing a new artificial intelligence (AI) system to support the process of accepting or rejecting mortgage applications. Which two issues should be considered as part of the responsible AI principle of fairness to avoid biased decision making? (Select two)</div>
+        <div class="options">
+            <div class="opt correct">Ethnicity</div>
+            <div class="opt correct">Gender</div>
+            <div class="opt">Salary</div>
+            <div class="opt">Payment history</div>
+            <div class="opt">Credit utilization</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Ethnicity &nbsp;&bull;&nbsp; 2. Gender</div>
+        </div>
+        <div class="explanation">The AI system must be designed to ensure that biased decision making is avoided and not based on factors such as ethnicity and gender. Salary, payment history, and credit utilization are standard metrics used in loan decisions.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 2: Describe Fundamental Principles of Machine Learning on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 56 of 113</div>
+        <div class="q-text">Which type of machine learning algorithm predicts a numeric label associated with an item based on that item&rsquo;s features?</div>
+        <div class="options">
+            <div class="opt">Classification</div>
+            <div class="opt correct">Regression</div>
+            <div class="opt">Clustering</div>
+            <div class="opt">Unsupervised learning</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Regression</div>
+        </div>
+        <div class="explanation">Regression algorithms predict numeric values. Clustering groups data points with similar characteristics. Classification predicts predefined categories. Unsupervised learning includes clustering but not regression or classification.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 57 of 113</div>
+        <div class="q-text">Predicting rainfall for a specific geographical location is an example of which type of machine learning?</div>
+        <div class="options">
+            <div class="opt">Classification</div>
+            <div class="opt correct">Regression</div>
+            <div class="opt">Clustering</div>
+            <div class="opt">Featurization</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Regression</div>
+        </div>
+        <div class="explanation">Predicting rainfall is an example of regression machine learning, as it predicts a numeric value using historical time-series data based on factors such as seasons. Clustering analyzes unlabeled data. Featurization is not a ML type. Classification predicts categories.</div>
+        <div class="reference">Ref: Regression &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 58 of 113</div>
+        <div class="q-text">In a regression machine learning algorithm, how are features and labels handled in a validation dataset?</div>
+        <div class="options">
+            <div class="opt">Features are compared to the feature values in a training dataset</div>
+            <div class="opt correct">Features are used to generate predictions for the label, which is compared to the actual label values</div>
+            <div class="opt">Labels are directly compared between validation and training datasets</div>
+            <div class="opt">Features and labels are both unknown</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Features are used to generate predictions for the label, which is compared to the actual label values</div>
+        </div>
+        <div class="explanation">In a regression machine learning algorithm, features are used to generate predictions for the label, which is compared to the actual label value. There is no direct comparison of features or labels between the validation and training datasets.</div>
+        <div class="reference">Ref: What is regression? &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 59 of 113</div>
+        <div class="q-text">A company is using machine learning to predict house prices based on appropriate house attributes. For the machine learning model, which attribute is the label?</div>
+        <div class="options">
+            <div class="opt correct">Price of the house</div>
+            <div class="opt">Floor space size</div>
+            <div class="opt">Number of bedrooms</div>
+            <div class="opt">Age of the house</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Price of the house</div>
+        </div>
+        <div class="explanation">The price of the house is the label you are attempting to predict through the machine learning model, typically using a regression model. Floor space size, number of bedrooms, and age of the house are all input features to help predict the house price label.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 60 of 113</div>
+        <div class="q-text">What is an unsupervised machine learning algorithm module for training models in the Azure Machine Learning designer?</div>
+        <div class="options">
+            <div class="opt correct">K-Means Clustering</div>
+            <div class="opt">Linear Regression</div>
+            <div class="opt">Classification</div>
+            <div class="opt">Normalize Data</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">K-Means Clustering</div>
+        </div>
+        <div class="explanation">K-means clustering is an unsupervised machine learning algorithm component used for training clustering models with unlabeled data. Linear regression and classification are supervised ML algorithms requiring labeled data. Normalize Data is not a machine learning algorithm module.</div>
+        <div class="reference">Ref: Clustering &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 3: Describe Features of Computer Vision Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 61 of 113</div>
+        <div class="q-text">Which two specialized domain models are supported by Azure Vision in Foundry Tools when categorizing an image? (Select two)</div>
+        <div class="options">
+            <div class="opt correct">Celebrities</div>
+            <div class="opt correct">Landmarks</div>
+            <div class="opt">Image types</div>
+            <div class="opt">people_</div>
+            <div class="opt">people_group</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Celebrities &nbsp;&bull;&nbsp; 2. Landmarks</div>
+        </div>
+        <div class="explanation">When categorizing an image, the Azure Vision in Foundry Tools service supports two specialized domain models: celebrities and landmarks. Image types is an additional capability for detecting clip art or line drawings. Both people_ and people_group are supported categories for image classification, not specialized domain models.</div>
+        <div class="reference">Ref: Introduction to computer vision concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 62 of 113</div>
+        <div class="q-text">What can be used for an attendance system that can scan handwritten signatures?</div>
+        <div class="options">
+            <div class="opt correct">Optical character recognition (OCR)</div>
+            <div class="opt">Object detection</div>
+            <div class="opt">Face detection</div>
+            <div class="opt">Image classification</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Optical character recognition (OCR)</div>
+        </div>
+        <div class="explanation">OCR is used to extract text and handwriting from images, making it suitable for extracting signatures for attendance purposes. Face detection detects and verifies human faces, not text. Object detection detects multiple objects using bounding boxes. Image classification is concerned with the primary contents of an image.</div>
+        <div class="reference">Ref: Get started with computer vision in Azure &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 63 of 113</div>
+        <div class="q-text">Which analytical task of the Azure Vision in Foundry Tools service returns bounding box coordinates?</div>
+        <div class="options">
+            <div class="opt correct">Object detection</div>
+            <div class="opt">Tagging</div>
+            <div class="opt">Image categorization</div>
+            <div class="opt">OCR</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Object detection</div>
+        </div>
+        <div class="explanation">Detecting objects identifies common objects and, for each, returns bounding box coordinates. Image categorization assigns a category to an image but does not return bounding box coordinates. Tagging associates an image with metadata. OCR detects text in images.</div>
+        <div class="reference">Ref: Introduction to computer vision concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 64 of 113</div>
+        <div class="q-text">When using the Face Detect API of the Azure Face in Foundry Tools service, which feature helps identify whether a human face has glasses or headwear?</div>
+        <div class="options">
+            <div class="opt correct">Face attributes</div>
+            <div class="opt">Face rectangle</div>
+            <div class="opt">Face ID</div>
+            <div class="opt">Face landmarks</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Face attributes</div>
+        </div>
+        <div class="explanation">Face attributes are a set of features that can be detected by the Face Detect API. Attributes such as accessories (glasses, mask, headwear etc.) can be detected. Face rectangle, face ID, and face landmarks do not allow you to determine whether a person is wearing glasses or headwear.</div>
+        <div class="reference">Ref: What is the Azure Face service? &ndash; Azure Cognitive Services | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 65 of 113</div>
+        <div class="q-text">What can you use to analyze images of people to identify whether specific human-related visual features are present?</div>
+        <div class="options">
+            <div class="opt correct">Azure AI Face in Foundry Tools</div>
+            <div class="opt">Azure Vision in Foundry Tools</div>
+            <div class="opt">Azure Document Intelligence in Foundry Tools</div>
+            <div class="opt">Azure AI Video Indexer</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Azure AI Face in Foundry Tools</div>
+        </div>
+        <div class="explanation">Azure AI Face in Foundry Tools is specifically designed to analyze images of people and detect human-related visual features. Azure Vision provides general image analysis. Azure Document Intelligence extracts information from documents. Azure AI Video Indexer analyzes video content rather than individual images.</div>
+        <div class="reference">Ref: Azure Content Understanding in Foundry Tools face solutions; Use cases for Azure AI Face service</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 66 of 113</div>
+        <div class="q-text">You need a solution that analyzes images to identify objects and scenes, such as vehicles, buildings, and outdoor environments. Which service should you use?</div>
+        <div class="options">
+            <div class="opt correct">Azure Vision in Foundry Tools</div>
+            <div class="opt">Azure AI Face in Foundry Tools</div>
+            <div class="opt">Azure Document Intelligence in Foundry Tools</div>
+            <div class="opt">Azure AI Video Indexer</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Azure Vision in Foundry Tools</div>
+        </div>
+        <div class="explanation">Azure Vision in Foundry Tools provides general image analysis capabilities, including identifying objects, scenes, and visual features in images. Azure AI Face focuses on face-related scenarios. Azure Document Intelligence extracts information from documents. Azure AI Video Indexer analyzes video content rather than still images.</div>
+        <div class="reference">Ref: Understand Azure Vision Image Analysis capabilities</div>
+    </div>
+
+    <div class="section-title">Section 4: Describe Features of Natural Language Processing (NLP) Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 67 of 113</div>
+        <div class="q-text">What is the first step in the statistical analysis of terms in a text in the context of natural language processing (NLP)?</div>
+        <div class="options">
+            <div class="opt correct">Removing stop words</div>
+            <div class="opt">Counting the occurrences of each word</div>
+            <div class="opt">Creating a vectorized model</div>
+            <div class="opt">Encoding words as numeric features</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Removing stop words</div>
+        </div>
+        <div class="explanation">Removing stop words is the first step in the statistical analysis of terms used in a text in the context of NLP. Counting occurrences takes place after stop words are removed. Creating a vectorized model captures semantic relationships between words. Encoding words as numeric features is frequently used in sentiment analysis.</div>
+        <div class="reference">Ref: Introduction to NLP concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 68 of 113</div>
+        <div class="q-text">Which two Azure AI Services features can be used to enable both text-to-text and speech-to-text between multiple languages? (Select two)</div>
+        <div class="options">
+            <div class="opt correct">Azure Speech in Foundry Tools</div>
+            <div class="opt correct">The Translator service</div>
+            <div class="opt">Language detection</div>
+            <div class="opt">Key phrase extraction</div>
+            <div class="opt">Conversational Language Understanding</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Azure Speech in Foundry Tools &nbsp;&bull;&nbsp; 2. The Translator service</div>
+        </div>
+        <div class="explanation">Azure Speech in Foundry Tools can generate spoken audio from text for speech-to-text translation. Azure Translator supports text-to-text translation in more than 60 languages. Key phrase extraction, Conversational Language Understanding, and language detection are not used for language translation.</div>
+        <div class="reference">Ref: Get started with natural language processing in Azure &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 69 of 113</div>
+        <div class="q-text">Which two features of Azure AI Services allow you to identify issues from support question data, as well as identify any people and products that are mentioned? (Select two)</div>
+        <div class="options">
+            <div class="opt correct">Key phrase extraction</div>
+            <div class="opt correct">Named entity recognition</div>
+            <div class="opt">Azure AI Bot Service</div>
+            <div class="opt">Conversational Language Understanding</div>
+            <div class="opt">Azure Speech in Foundry Tools service</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Key phrase extraction &nbsp;&bull;&nbsp; 2. Named entity recognition</div>
+        </div>
+        <div class="explanation">Key phrase extraction extracts key phrases to identify the main concepts in a text, enabling identification of common issues from support data. Named entity recognition identifies and categorizes entities such as people, places, organizations, and quantities. Azure Speech, Conversational Language Understanding, and Azure AI Bot Service are not designed for these tasks.</div>
+        <div class="reference">Ref: Key Phrase Extraction cognitive skill; Extract insights from text with the Language service; Introduction to NLP concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 70 of 113</div>
+        <div class="q-text">Which feature of the Azure Language in Foundry Tools service includes functionality that returns links to external websites to disambiguate terms identified in a text?</div>
+        <div class="options">
+            <div class="opt correct">Entity recognition</div>
+            <div class="opt">Key phrase extraction</div>
+            <div class="opt">Language detection</div>
+            <div class="opt">Sentiment analysis</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Entity recognition</div>
+        </div>
+        <div class="explanation">Entity recognition includes the entity linking functionality that returns links to external websites to disambiguate terms (entities) identified in a text. Key phrase extraction evaluates the text and identifies main talking points. Language detection identifies the language. Sentiment analysis returns sentiment scores and labels.</div>
+        <div class="reference">Ref: Introduction to natural language processing concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 5: Describe Features of Generative AI Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 71 of 113</div>
+        <div class="q-text">[Answer choice] can return responses, such as natural language, images, or code, based on natural language input.</div>
+        <div class="options">
+            <div class="opt correct">Generative AI</div>
+            <div class="opt">Computer vision</div>
+            <div class="opt">Machine learning</div>
+            <div class="opt">Natural language processing</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Generative AI</div>
+        </div>
+        <div class="explanation">Generative AI models offer the capability of generating images based on a prompt by using DALL-E models, generating natural language and code. The other AI capabilities are used in different contexts to achieve other goals.</div>
+        <div class="reference">Ref: What is generative AI? &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 72 of 113</div>
+        <div class="q-text">The four-step process to apply responsible AI principles to generative AI includes [Answer choice].</div>
+        <div class="options">
+            <div class="opt correct">Identifying potential harms, measuring harms, mitigating risks, and planning for deployments</div>
+            <div class="opt">Identifying potential harms, training models, tuning hyperparameters, and validating accuracy</div>
+            <div class="opt">Collecting data, preprocessing inputs, selecting algorithms, and optimizing parameters</div>
+            <div class="opt">Auditing logs, encrypting data, rotating credentials, and monitoring endpoints</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Identifying potential harms, measuring harms, mitigating risks, and planning for deployments</div>
+        </div>
+        <div class="explanation">These activities reflect the Microsoft high-level process for applying responsible AI principles to generative AI solutions: understanding possible risks, assessing whether those risks are present, taking steps to reduce them, and preparing appropriate plans before releasing the solution. The other options describe system operations, security, or ML model development activities.</div>
+        <div class="reference">Ref: Plan a responsible generative AI solution</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 73 of 113</div>
+        <div class="q-text">Generative AI is used to generate [Answer choice].</div>
+        <div class="options">
+            <div class="opt correct">New content based on patterns learned from training data</div>
+            <div class="opt">New datasets during the training process</div>
+            <div class="opt">Predicted future numeric values from historical data</div>
+            <div class="opt">Predefined category assignments for input data</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">New content based on patterns learned from training data</div>
+        </div>
+        <div class="explanation">Generative AI models are designed to create original outputs, such as text, images, and code, by using patterns and relationships learned from large datasets. They do not generate new datasets during training, predict numeric values, or assign data to predefined categories &mdash; those are tasks associated with traditional ML techniques.</div>
+        <div class="reference">Ref: Generative AI and agents</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 74 of 113</div>
+        <div class="q-text">You are using a generative AI solution. You need to ensure that users understand the purpose of the solution and the potential impact of its outputs. Which responsible AI risk should you identify and mitigate?</div>
+        <div class="options">
+            <div class="opt correct">Lack of transparency</div>
+            <div class="opt">Adversarial vulnerability</div>
+            <div class="opt">Bias or unfair outcomes</div>
+            <div class="opt">Lack of accessibility</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Lack of transparency</div>
+        </div>
+        <div class="explanation">Ensuring users understand the purpose and potential impact of a generative AI solution is a core aspect of the transparency principle. Adversarial vulnerability relates to security and robustness. Bias or unfair outcomes relates to fairness. Lack of accessibility relates to inclusiveness.</div>
+        <div class="reference">Ref: Responsible AI</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 75 of 113</div>
+        <div class="q-text">The Microsoft Foundry models catalog can be used to [Answer choice].</div>
+        <div class="options">
+            <div class="opt correct">Compare models</div>
+            <div class="opt">Create a model</div>
+            <div class="opt">Train a model from scratch</div>
+            <div class="opt">Deploy a prebuilt application</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Compare models</div>
+        </div>
+        <div class="explanation">The Microsoft Foundry models catalog enables users to discover, compare, and evaluate models, including testing models interactively in a playground before selecting one for use.</div>
+        <div class="reference">Ref: Explore Microsoft Foundry Models; Understand Foundry&rsquo;s model catalog</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 76 of 113</div>
+        <div class="q-text">Which statement accurately describes Microsoft Foundry?</div>
+        <div class="options">
+            <div class="opt correct">Microsoft Foundry is a centralized platform that brings together tools and services for building, testing, and deploying generative AI solutions.</div>
+            <div class="opt">Microsoft Foundry is a marketplace for discovering and purchasing AI models.</div>
+            <div class="opt">Microsoft Foundry is primarily a model training and customization service.</div>
+            <div class="opt">Microsoft Foundry is a tool for discovering and comparing models from a catalog.</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Microsoft Foundry is a centralized platform that brings together tools and services for building, testing, and deploying generative AI solutions.</div>
+        </div>
+        <div class="explanation">Microsoft Foundry provides a unified platform experience that integrates tools and services for building, testing, and deploying generative AI solutions in Azure. Discovering and comparing models is handled by the model catalog. Marketplace functionality and direct model training are not core capabilities.</div>
+        <div class="reference">Ref: Understand Foundry capabilities; What is Microsoft Foundry?</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 77 of 113</div>
+        <div class="q-text">You plan to use Azure OpenAI in Microsoft Foundry for a generative AI solution. Which security capability is supported by using Azure OpenAI in Foundry Models?</div>
+        <div class="options">
+            <div class="opt correct">Azure role-based access control (RBAC)</div>
+            <div class="opt">Client-side encryption keys</div>
+            <div class="opt">Custom firewall rules</div>
+            <div class="opt">Operating system-level permissions</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Azure role-based access control (RBAC)</div>
+        </div>
+        <div class="explanation">Azure OpenAI in Foundry Models uses Azure role-based access control (RBAC) to manage which users can access models and perform operations, providing a centralized and managed way to control permissions. Client-side encryption keys, custom firewall rules, and operating system-level permissions are not required or managed by users when working with this managed Azure service.</div>
+        <div class="reference">Ref: Role-based access control for Azure OpenAI in Microsoft Foundry Models</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 78 of 113</div>
+        <div class="q-text">Which feature of the Azure Speech in Foundry Tools service can identify distinct user voices?</div>
+        <div class="options">
+            <div class="opt correct">Speech recognition</div>
+            <div class="opt">Speech synthesis</div>
+            <div class="opt">Speech translation</div>
+            <div class="opt">Language identification</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Speech recognition</div>
+        </div>
+        <div class="explanation">Speech recognition uses audio data to analyze speech and determine recognizable patterns mapped to distinct user voices. Speech synthesis converts text to speech. Speech translation handles multilanguage translation. Language identification identifies spoken languages.</div>
+        <div class="reference">Ref: Speaker recognition overview &ndash; Speech service | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 1: Describe Artificial Intelligence Workloads and Considerations</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 79 of 113</div>
+        <div class="q-text">A company is currently developing driverless agriculture vehicles to help harvest crops. The vehicles will be deployed alongside people working in the crop fields, and as such, the company will need to carry out robust testing. Which principle of responsible artificial intelligence (AI) is most important in this case?</div>
+        <div class="options">
+            <div class="opt correct">Reliability and safety</div>
+            <div class="opt">Fairness</div>
+            <div class="opt">Transparency</div>
+            <div class="opt">Inclusiveness</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Reliability and safety</div>
+        </div>
+        <div class="explanation">The reliability and safety principles are of paramount importance here as it requires an AI system to work alongside people in a physical environment by using AI controlled machinery. The system must function safely, while ensuring no harm will come to human life.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 2: Describe Fundamental Principles of Machine Learning on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 80 of 113</div>
+        <div class="q-text">You plan to use machine learning to predict the probability of humans developing diabetes based on their age and body fat percentage. What should the model include?</div>
+        <div class="options">
+            <div class="opt correct">Two features and one label</div>
+            <div class="opt">One feature and two labels</div>
+            <div class="opt">Three features and no labels</div>
+            <div class="opt">One feature and one label</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Two features and one label</div>
+        </div>
+        <div class="explanation">The scenario represents a model that establishes a relationship between two features (age and body fat percentage) and one label (the likelihood of developing diabetes). The features are descriptive attributes (serving as input), while the label is the characteristic you are trying to predict (serving as output).</div>
+        <div class="reference">Ref: Binary classification</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 81 of 113</div>
+        <div class="q-text">What is the purpose of a validation dataset used as part of the development of a machine learning model?</div>
+        <div class="options">
+            <div class="opt correct">Evaluating the trained model</div>
+            <div class="opt">Cleaning missing data</div>
+            <div class="opt">Feature engineering</div>
+            <div class="opt">Summarizing the data</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Evaluating the trained model</div>
+        </div>
+        <div class="explanation">The validation dataset is a sample of data held back from a training dataset, used to evaluate the performance of the trained model. Cleaning missing data detects and fixes missing values. Feature engineering is part of data preparation. Summarizing provides summary statistics such as mean or count of distinct values.</div>
+        <div class="reference">Ref: Regression &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 82 of 113</div>
+        <div class="q-text">You need to create an automated machine learning (automated ML) model. Which resource should you create first in Azure Machine Learning studio?</div>
+        <div class="options">
+            <div class="opt correct">A dataset</div>
+            <div class="opt">A workspace</div>
+            <div class="opt">An Azure container instance</div>
+            <div class="opt">An AKS cluster</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">A dataset</div>
+        </div>
+        <div class="explanation">A dataset is required to create an automated machine learning (automated ML) run. A workspace must be created before you can access Machine Learning studio. An Azure container instance and an AKS cluster can be created as deployment targets after training is complete.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 83 of 113</div>
+        <div class="q-text">Which three data transformation modules are in the Azure Machine Learning designer? (Select three)</div>
+        <div class="options">
+            <div class="opt correct">Clean Missing Data</div>
+            <div class="opt correct">Normalize Data</div>
+            <div class="opt correct">Select Columns in Dataset</div>
+            <div class="opt">Train Clustering Model</div>
+            <div class="opt">Evaluate Model</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Clean Missing Data &nbsp;&bull;&nbsp; 2. Normalize Data &nbsp;&bull;&nbsp; 3. Select Columns in Dataset</div>
+        </div>
+        <div class="explanation">Normalize Data changes numeric column values to a common scale without distorting differences. Clean Missing Data detects and fixes missing values as part of data transformation. Select Columns in Dataset chooses a subset of columns of interest. Train Clustering Model is not part of data transformation. Evaluate Model measures accuracy of trained models.</div>
+        <div class="reference">Ref: Clustering &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 3: Describe Features of Computer Vision Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 84 of 113</div>
+        <div class="q-text">Which computer vision service provides bounding coordinates as part of its output?</div>
+        <div class="options">
+            <div class="opt correct">Object detection</div>
+            <div class="opt">Semantic segmentation</div>
+            <div class="opt">Image classification</div>
+            <div class="opt">Image analysis</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Object detection</div>
+        </div>
+        <div class="explanation">Object detection generates bounding boxes identifying locations of different types of objects in an image, including bounding box coordinates. Semantic segmentation classifies individual pixels. Image classification classifies images by contents. Image analysis extracts information to label with tags or captions.</div>
+        <div class="reference">Ref: Introduction to computer vision concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 85 of 113</div>
+        <div class="q-text">Which service can you use to train an image classification model?</div>
+        <div class="options">
+            <div class="opt correct">Azure AI Custom Vision</div>
+            <div class="opt">Azure Vision in Foundry Tools</div>
+            <div class="opt">Azure AI Face in Foundry Tools</div>
+            <div class="opt">Azure Language in Foundry Tools</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Azure AI Custom Vision</div>
+        </div>
+        <div class="explanation">Azure AI Custom Vision is an image recognition service that allows you to build and deploy your own image models. The Azure AI Vision service, Azure AI Face service, and Azure Language in Foundry Tools service do not provide the capability to train your own image model.</div>
+        <div class="reference">Ref: What is Custom Vision? &ndash; Azure Cognitive Services | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 4: Describe Features of Natural Language Processing (NLP) Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 86 of 113</div>
+        <div class="q-text">What is the confidence score returned by the Azure Language in Foundry Tools detection service of natural language processing (NLP) for an unknown language name?</div>
+        <div class="options">
+            <div class="opt correct">NaN</div>
+            <div class="opt">1</div>
+            <div class="opt">0</div>
+            <div class="opt">Unknown</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">NaN</div>
+        </div>
+        <div class="explanation">NaN, or not a number, designates an unknown confidence score. &ldquo;Unknown&rdquo; is the value with which the NaN confidence score is associated. The score values range between 0 and 1, with 0 designating the lowest confidence score and 1 designating the highest.</div>
+        <div class="reference">Ref: Introduction to natural language processing concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 87 of 113</div>
+        <div class="q-text">Which Azure Language in Foundry Tools feature allows you to analyze written articles to extract information and concepts, such as people and locations, for classification purposes?</div>
+        <div class="options">
+            <div class="opt correct">Named entity recognition</div>
+            <div class="opt">Key phrase extraction</div>
+            <div class="opt">Content Moderator</div>
+            <div class="opt">PII detection</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Named entity recognition</div>
+        </div>
+        <div class="explanation">Named entity recognition identifies and categorizes entities in unstructured text, such as people, places, organizations, and quantities, and is suitable for supporting article recommendation systems. Key phrase extraction, Content Moderator, and PII detection are not suited to entity recognition tasks for building a recommender system.</div>
+        <div class="reference">Ref: What is Named Entity Recognition (NER)? &ndash; Azure Cognitive Services | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 88 of 113</div>
+        <div class="q-text">For which two scenarios is the Universal Language Model used by the speech-to-text API optimized? (Select two)</div>
+        <div class="options">
+            <div class="opt correct">Conversational</div>
+            <div class="opt correct">Dictation</div>
+            <div class="opt">Acoustic</div>
+            <div class="opt">Language</div>
+            <div class="opt">Pronunciation</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Conversational &nbsp;&bull;&nbsp; 2. Dictation</div>
+        </div>
+        <div class="explanation">The Universal Language Model used by the speech-to-text API is optimized for conversational and dictation scenarios. The acoustic, language, and pronunciation scenarios require developing your own model.</div>
+        <div class="reference">Ref: Get started with speech on Azure &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 5: Describe Features of Generative AI Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 89 of 113</div>
+        <div class="q-text">As per the NIST AI Risk Management Framework, what is the first stage to consider when developing a responsible generative AI solution?</div>
+        <div class="options">
+            <div class="opt correct">Identify potential harms</div>
+            <div class="opt">Measure potential harms</div>
+            <div class="opt">Mitigate risks</div>
+            <div class="opt">Plan for deployment</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Identify potential harms</div>
+        </div>
+        <div class="explanation">Identifying potential harms is the first stage when planning a responsible generative AI solution.</div>
+        <div class="reference">Ref: Responsible generative AI</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 90 of 113</div>
+        <div class="q-text">A key feature of a generative AI model is that it can [Answer choice].</div>
+        <div class="options">
+            <div class="opt correct">Produce original outputs based on patterns learned from training data</div>
+            <div class="opt">Assign labels to data by using classification logic</div>
+            <div class="opt">Identify anomalies in datasets</div>
+            <div class="opt">Follow predefined rule-based decision trees</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Produce original outputs based on patterns learned from training data</div>
+        </div>
+        <div class="explanation">A generative AI model produces original outputs based on patterns learned from training data. This reflects the defining capability of generative models, which create new content rather than categorizing, detecting anomalies, or following predefined rules. Assigning labels and identifying anomalies are traditional ML techniques. Rule-based systems rely on explicitly coded logic.</div>
+        <div class="reference">Ref: Generative AI and agents</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 91 of 113</div>
+        <div class="q-text">You are reviewing the key features of generative AI models. Which statement best describes a capability of a generative AI model?</div>
+        <div class="options">
+            <div class="opt correct">Generates new content based on learned patterns</div>
+            <div class="opt">Classifies data into predefined categories</div>
+            <div class="opt">Detects patterns to predict numeric outcomes</div>
+            <div class="opt">Automates processes using rule-based logic</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Generates new content based on learned patterns</div>
+        </div>
+        <div class="explanation">A generative AI model generates new content such as text, images, video, and code based on learned patterns. This distinguishes generative AI from other types of AI models. Detecting patterns to predict outcomes and classifying data are characteristic of traditional ML. Rule-based logic relies on explicitly defined rules rather than learning from data.</div>
+        <div class="reference">Ref: Generative AI and agents</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 92 of 113</div>
+        <div class="q-text">Which three capabilities are examples of image generation features for a generative AI model? (Select three)</div>
+        <div class="options">
+            <div class="opt correct">Creating variations of an image</div>
+            <div class="opt correct">Editing an image</div>
+            <div class="opt correct">New image creation</div>
+            <div class="opt">Animation of static images</div>
+            <div class="opt">Video generation from text</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Creating variations of an image &nbsp;&bull;&nbsp; 2. Editing an image &nbsp;&bull;&nbsp; 3. New image creation</div>
+        </div>
+        <div class="explanation">Image generation models can take a prompt, a base image, or both, and create something new. These generative AI models can create both realistic and artistic images, change the layout or style of an image, and create variations of a provided image.</div>
+        <div class="reference">Ref: Responsible generative AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 93 of 113</div>
+        <div class="q-text">Azure OpenAI in Foundry Models can be used to [Answer choice].</div>
+        <div class="options">
+            <div class="opt correct">Access and deploy models, such as GPT, for generative AI solutions</div>
+            <div class="opt">Train OpenAI-based computer vision models</div>
+            <div class="opt">Orchestrate custom machine learning pipelines</div>
+            <div class="opt">Manage API keys and secrets</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Access and deploy models, such as GPT, for generative AI solutions</div>
+        </div>
+        <div class="explanation">Azure OpenAI in Foundry Models provides managed access to pretrained OpenAI models within Azure for tasks such as text generation, summarization, and code generation. Training computer vision models, orchestrating ML pipelines, or managing API keys are responsibilities of other Azure services such as Azure Vision, Azure Machine Learning, or Azure Key Vault.</div>
+        <div class="reference">Ref: Explore Microsoft Foundry Models; Understand Foundry&rsquo;s model catalog</div>
+    </div>
+
+    <div class="section-title">Section 1: Describe Artificial Intelligence Workloads and Considerations</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 94 of 113</div>
+        <div class="q-text">Which principle of responsible artificial intelligence (AI) has the objective of ensuring that AI solutions benefit all parts of society regardless of gender or ethnicity?</div>
+        <div class="options">
+            <div class="opt correct">Inclusiveness</div>
+            <div class="opt">Privacy and security</div>
+            <div class="opt">Reliability and safety</div>
+            <div class="opt">Accountability</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Inclusiveness</div>
+        </div>
+        <div class="explanation">The inclusiveness principle is meant to ensure that AI solutions empower and engage everyone, regardless of criteria such as physical ability, gender, sexual orientation, or ethnicity. Privacy and security, reliability and safety, and accountability do not discriminate based on these criteria, but also do not emphasize bringing benefits to all parts of society.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 2: Describe Fundamental Principles of Machine Learning on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 95 of 113</div>
+        <div class="q-text">Which type of machine learning algorithm assigns items to a set of predefined categories?</div>
+        <div class="options">
+            <div class="opt correct">Classification</div>
+            <div class="opt">Regression</div>
+            <div class="opt">Clustering</div>
+            <div class="opt">Unsupervised learning</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Classification</div>
+        </div>
+        <div class="explanation">Classification algorithms are used to predict a predefined category to which an input value belongs. Regression algorithms predict numeric values. Clustering groups data points with similar characteristics. Unsupervised learning includes clustering but not regression or classification.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 96 of 113</div>
+        <div class="q-text">A company wants to predict household water use based on the number of people in a house, the weather temperature, and the time of year. In terms of data labels and features, what is the label in this use case?</div>
+        <div class="options">
+            <div class="opt correct">Water use</div>
+            <div class="opt">Weather temperature</div>
+            <div class="opt">Number of people in the house</div>
+            <div class="opt">Time of year</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Water use</div>
+        </div>
+        <div class="explanation">Water use is the label value that you want to predict, also known as the independent variable. Number of people in the house, weather temperature, and time of year are features &mdash; values that are dependent on the label and can influence the water consumed in a household.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 97 of 113</div>
+        <div class="q-text">You train a regression model by using automated machine learning (automated ML) in the Azure Machine Learning studio. You review the best model summary. You need to publish the model for others to use from the internet. What should you do next?</div>
+        <div class="options">
+            <div class="opt correct">Deploy the model to an endpoint</div>
+            <div class="opt">Split the data into training and validation datasets</div>
+            <div class="opt">Create a compute cluster</div>
+            <div class="opt">Test the model&rsquo;s endpoint</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Deploy the model to an endpoint</div>
+        </div>
+        <div class="explanation">You can deploy the best performing model for client applications to use over the internet by using an endpoint. Compute clusters are used to train the model and are created after workspace creation. You must deploy before testing the endpoint. Automated ML performs validation automatically, so you do not need to split the dataset.</div>
+        <div class="reference">Ref: What is automated ML? AutoML &ndash; Azure Machine Learning | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 98 of 113</div>
+        <div class="q-text">Which machine learning algorithm module in the Azure Machine Learning designer is used to train a model?</div>
+        <div class="options">
+            <div class="opt correct">Linear Regression</div>
+            <div class="opt">Clean Missing Data</div>
+            <div class="opt">Select Columns in Dataset</div>
+            <div class="opt">Evaluate Model</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Linear Regression</div>
+        </div>
+        <div class="explanation">Linear Regression is a machine learning algorithm module used for training regression models. Clean Missing Data is part of data preparation. Select Columns in Dataset is a data transformation component. Evaluate Model measures accuracy of trained models.</div>
+        <div class="reference">Ref: Regression &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 4: Describe Features of Natural Language Processing (NLP) Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 99 of 113</div>
+        <div class="q-text">Which three values are returned by the language detection feature of the Azure Language in Foundry Tools service in Azure? (Select three)</div>
+        <div class="options">
+            <div class="opt correct">Language Name</div>
+            <div class="opt correct">ISO 6391 Code</div>
+            <div class="opt correct">Score</div>
+            <div class="opt">Bounding box coordinates</div>
+            <div class="opt">Wikipedia URL</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Language Name &nbsp;&bull;&nbsp; 2. ISO 6391 Code &nbsp;&bull;&nbsp; 3. Score</div>
+        </div>
+        <div class="explanation">Language Name, ISO 6391 Code, and Score are three values returned by the language detection feature of NLP in Azure. Bounding box coordinates are returned by Azure Vision in Foundry Tools. Wikipedia URL is a potential value returned by entity linking of entity recognition.</div>
+        <div class="reference">Ref: Introduction to natural language processing concepts &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 100 of 113</div>
+        <div class="q-text">Which feature of the Azure Translator in Foundry Tools service is available only to Custom Translator?</div>
+        <div class="options">
+            <div class="opt correct">Model training with a dictionary</div>
+            <div class="opt">Real-time translation</div>
+            <div class="opt">Language auto-detection</div>
+            <div class="opt">Custom endpoint deployment</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Model training with a dictionary</div>
+        </div>
+        <div class="explanation">Model training with a dictionary can be used with Custom Translator when you do not have enough parallel sentences to meet the 10,000 minimum requirements. The resulting model will typically complete training much faster than with full training and will use the baseline models for translation along with the dictionaries you have added.</div>
+        <div class="reference">Ref: What is Custom Translator? &ndash; Azure Cognitive Services | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 5: Describe Features of Generative AI Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 101 of 113</div>
+        <div class="q-text">The Microsoft Foundry models catalog is a centralized hub for [Answer choice].</div>
+        <div class="options">
+            <div class="opt correct">Discovering and comparing generative AI models available in Azure</div>
+            <div class="opt">Prompt engineering and collaboration tools</div>
+            <div class="opt">Application performance monitoring</div>
+            <div class="opt">Model fine-tuning and deployment automation</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Discovering and comparing generative AI models available in Azure</div>
+        </div>
+        <div class="explanation">The Microsoft Foundry models catalog provides a centralized experience for discovering and comparing generative AI models available in Azure, enabling users to understand model options and capabilities before selecting a model. The other options describe prompt engineering, application monitoring, or model fine-tuning, which are supported by other Microsoft Foundry capabilities but not the model catalog itself.</div>
+        <div class="reference">Ref: Explore Microsoft Foundry Models; Understand Foundry&rsquo;s model catalog</div>
+    </div>
+
+    <div class="section-title">Section 1: Describe Artificial Intelligence Workloads and Considerations</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 102 of 113</div>
+        <div class="q-text">Which type of artificial intelligence (AI) workload provides the ability to generate bounding boxes that identify the locations of different types of vehicles in an image?</div>
+        <div class="options">
+            <div class="opt correct">Object detection</div>
+            <div class="opt">Semantic segmentation</div>
+            <div class="opt">Image classification</div>
+            <div class="opt">Image analysis</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Object detection</div>
+        </div>
+        <div class="explanation">Object detection provides the ability to generate bounding boxes identifying the locations of different types of vehicles in an image. The other answer choices also process images, but their outcomes are different.</div>
+        <div class="reference">Ref: Understand computer vision &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 103 of 113</div>
+        <div class="q-text">Which principle of responsible artificial intelligence (AI) ensures that an AI system meets any legal and ethical standards it must abide by?</div>
+        <div class="options">
+            <div class="opt correct">Accountability</div>
+            <div class="opt">Privacy and security</div>
+            <div class="opt">Inclusiveness</div>
+            <div class="opt">Fairness</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Accountability</div>
+        </div>
+        <div class="explanation">The accountability principle ensures that AI systems are designed to meet any ethical and legal standards that are applicable. Privacy and security ensures protection of personal/sensitive data. Inclusiveness empowers people in a positive and engaging way. Fairness ensures users are treated fairly.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 2: Describe Fundamental Principles of Machine Learning on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 104 of 113</div>
+        <div class="q-text">You need to use the Azure Machine Learning designer to train a machine learning model. What should you do first in the Machine Learning designer?</div>
+        <div class="options">
+            <div class="opt correct">Create a pipeline</div>
+            <div class="opt">Add a dataset</div>
+            <div class="opt">Add training modules</div>
+            <div class="opt">Deploy a service</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Create a pipeline</div>
+        </div>
+        <div class="explanation">Before you can start training a machine learning model, you must first create a pipeline in the Machine Learning designer. This is followed by adding a dataset, adding training modules, and eventually deploying a service.</div>
+        <div class="reference">Ref: Regression &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 2: Describe Fundamental Principles of Machine Learning on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 105 of 113</div>
+        <div class="q-text">Which type of machine learning algorithm finds the optimal way to split a dataset into groups without relying on training and validating label predictions?</div>
+        <div class="options">
+            <div class="opt correct">Clustering</div>
+            <div class="opt">Supervised learning</div>
+            <div class="opt">Classification</div>
+            <div class="opt">Regression</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Clustering</div>
+        </div>
+        <div class="explanation">A clustering algorithm is an example of unsupervised learning, which groups data points that have similar characteristics without relying on training and validating label predictions. Supervised learning includes regression and classification, but not clustering. Classification and regression are examples of supervised machine learning.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 106 of 113</div>
+        <div class="q-text">Which assumption of the multiple linear regression model should be satisfied to avoid misleading predictions?</div>
+        <div class="options">
+            <div class="opt correct">Features are independent of each other</div>
+            <div class="opt">Features are dependent on each other</div>
+            <div class="opt">Features must be categorical values</div>
+            <div class="opt">Labels must be binary values</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Features are independent of each other</div>
+        </div>
+        <div class="explanation">Multiple linear regression models the relationship between several features and a single label. The features must be independent of each other, otherwise, the model&rsquo;s predictions will be misleading.</div>
+        <div class="reference">Ref: Regression</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 107 of 113</div>
+        <div class="q-text">In a regression machine learning algorithm, what are the characteristics of features and labels in a validation dataset?</div>
+        <div class="options">
+            <div class="opt correct">Known feature and label values</div>
+            <div class="opt">Known feature values and unknown label values</div>
+            <div class="opt">Unknown feature and label values</div>
+            <div class="opt">Unknown feature values and known label values</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Known feature and label values</div>
+        </div>
+        <div class="explanation">In a regression machine learning algorithm, a validation set contains known feature and label values.</div>
+        <div class="reference">Ref: What is regression? &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 4: Describe Features of Natural Language Processing (NLP) Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 108 of 113</div>
+        <div class="q-text">Which three features are elements of the Azure Language in Foundry Tools Service? (Select three)</div>
+        <div class="options">
+            <div class="opt correct">Entity Linking</div>
+            <div class="opt correct">Personally Identifiable Information (PII) detection</div>
+            <div class="opt correct">Sentiment analysis</div>
+            <div class="opt">Azure Vision in Foundry Tools</div>
+            <div class="opt">Azure AI Content Moderator</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Entity Linking &nbsp;&bull;&nbsp; 2. Personally Identifiable Information (PII) detection &nbsp;&bull;&nbsp; 3. Sentiment analysis</div>
+        </div>
+        <div class="explanation">Entity Linking, PII detection, and sentiment analysis are all elements of the Azure AI Service for Azure Language in Foundry Tools. Azure Vision in Foundry Tools deals with image processing. Azure AI Content Moderator is an Azure AI Services service used to check text, image, and video content for material that is potentially offensive.</div>
+        <div class="reference">Ref: What is Azure Cognitive Service for Language &ndash; Azure Cognitive Services | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 4: Describe Features of Natural Language Processing (NLP) Workloads on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 109 of 113</div>
+        <div class="q-text">Which three features are elements of the Azure Speech in Foundry Tools service? (Select three)</div>
+        <div class="options">
+            <div class="opt correct">Language identification</div>
+            <div class="opt correct">Speaker recognition</div>
+            <div class="opt correct">Voice assistants</div>
+            <div class="opt">Text translation</div>
+            <div class="opt">Document translation</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">1. Language identification &nbsp;&bull;&nbsp; 2. Speaker recognition &nbsp;&bull;&nbsp; 3. Voice assistants</div>
+        </div>
+        <div class="explanation">Language identification, speaker recognition, and voice assistants are all elements of the Azure Speech in Foundry Tools service. Text translation and document translation are part of the Translator service.</div>
+        <div class="reference">Ref: What is the Speech service? &ndash; Azure Cognitive Services | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 1: Describe Artificial Intelligence Workloads and Considerations</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 110 of 113</div>
+        <div class="q-text">Which principle of responsible artificial intelligence (AI) defines the framework of governance and organization principles that meet ethical and legal standards of AI solutions?</div>
+        <div class="options">
+            <div class="opt correct">Accountability</div>
+            <div class="opt">Transparency</div>
+            <div class="opt">Fairness</div>
+            <div class="opt">Inclusiveness</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Accountability</div>
+        </div>
+        <div class="explanation">Accountability defines the framework of governance and organizational principles, which are meant to ensure that AI solutions meet ethical and legal standards that are clearly defined. The other answer choices do not define the framework of governance and organization principles, but provide guidance regarding the ethical and legal aspects of the corresponding standards.</div>
+        <div class="reference">Ref: Understand Responsible AI &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="section-title">Section 2: Describe Fundamental Principles of Machine Learning on Azure</div>
+
+
+    <div class="question-card">
+        <div class="q-number">Question 111 of 113</div>
+        <div class="q-text">A company deploys an online marketing campaign to social media platforms for a new product launch. The company wants to use machine learning to measure the sentiment of users on the Twitter platform who made posts in response to the campaign. Which type of machine learning is this?</div>
+        <div class="options">
+            <div class="opt correct">Classification</div>
+            <div class="opt">Clustering</div>
+            <div class="opt">Regression</div>
+            <div class="opt">Data transformation</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Classification</div>
+        </div>
+        <div class="explanation">Classification is used to predict categories of data. Sentiment analysis can be carried out on the Twitter posts with a numeric value applied to identify and classify positive or negative sentiment. Clustering analyzes unlabeled data to find similarities. Regression predicts numeric values. Data transformation is not a machine learning type.</div>
+        <div class="reference">Ref: Clustering &ndash; Training | Microsoft Learn</div>
+    </div>
+    <div class="section-title">Section 2: Describe Fundamental Principles of Machine Learning on Azure</div>
+
+    <div class="question-card">
+        <div class="q-number">Question 112 of 113</div>
+        <div class="q-text">You need to use Azure Machine Learning to train a regression model. What should you create in Machine Learning studio?</div>
+        <div class="options">
+            <div class="opt">an Azure Kubernetes Service (AKS) cluster</div>
+            <div class="opt">a workspace</div>
+            <div class="opt correct">a job</div>
+            <div class="opt">an Azure container instance</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">a job</div>
+        </div>
+        <div class="explanation">A job must be created in Machine Learning studio to use Machine Learning to train a regression model. A workspace must be created before you can access Machine Learning studio. An Azure container instance and an AKS cluster can be created as a deployment target, after training of a model is complete.</div>
+        <div class="reference">Ref: Fundamentals of machine learning &ndash; Training | Microsoft Learn</div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-number">Question 113 of 113</div>
+        <div class="q-text">You need to use the Azure Machine Learning designer to deploy a predictive service from a newly trained model. What should you do first in the Machine Learning designer?</div>
+        <div class="options">
+            <div class="opt correct">Create an inference pipeline.</div>
+            <div class="opt">Add training modules.</div>
+            <div class="opt">Add a dataset.</div>
+            <div class="opt">Create an inferencing cluster.</div>
+        <button class="reveal-btn" onclick="revealAnswer(this)">&#128274; Reveal Answer</button></div>
+        <div class="correct-answer">
+            <div class="label">Correct Answer</div>
+            <div class="value">Create an inference pipeline.</div>
+        </div>
+        <div class="explanation">To deploy a predictive service from a newly trained model by using the Machine Learning designer, you must first create an inference pipeline. Adding training modules takes place before creating a trained model, which already exists. Adding a dataset requires that a pipeline already exists. To create an inferencing cluster, you must use Machine Learning studio.</div>
+        <div class="reference">Ref: Regression &ndash; Training | Microsoft Learn</div>
+    </div>
+        <div class="no-results" id="noResults">
+            <div class="emoji">&#128269;</div>
+            <div>No questions match your search.</div>
+        </div>
+    </div>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+    <footer>
+        <span class="footer-brand">AI-900 Practice Assessment</span> &mdash; Question Bank (113 Questions) &bull; Microsoft Azure AI Fundamentals
+    </footer>
+
+    <script>
+    (function() {
+        // === INITIALIZATION ===
+        const cards = document.querySelectorAll('.question-card');
+        const sections = document.querySelectorAll('.section-title');
+        let currentSection = 'all';
+        let revealedSet = new Set();
+
+        // Assign section data attributes to each card
+        let currentSec = 0;
+        const allElements = document.querySelectorAll('.section-title, .question-card');
+        allElements.forEach(el => {
+            if (el.classList.contains('section-title')) {
+                const text = el.textContent;
+                if (text.includes('Section 1')) currentSec = 1;
+                else if (text.includes('Section 2')) currentSec = 2;
+                else if (text.includes('Section 3')) currentSec = 3;
+                else if (text.includes('Section 4')) currentSec = 4;
+                else if (text.includes('Section 5')) currentSec = 5;
+            } else if (el.classList.contains('question-card')) {
+                el.dataset.section = currentSec;
+            }
+        });
+
+        // Count per section
+        const sectionCounts = {};
+        cards.forEach(c => {
+            const s = c.dataset.section;
+            sectionCounts[s] = (sectionCounts[s] || 0) + 1;
+        });
+        document.querySelectorAll('.section-nav-btn').forEach(btn => {
+            const onclick = btn.getAttribute('onclick');
+            if (!onclick) return;
+            const m = onclick.match(/filterSection\((\d+)\)/);
+            if (m) {
+                const cnt = sectionCounts[m[1]] || 0;
+                btn.innerHTML += '<span class="count">' + cnt + '</span>';
+            }
+        });
+
+        // === QUIZ MODE ===
+        window.toggleQuizMode = function() {
+            document.body.classList.toggle('quiz-mode');
+            const btn = document.getElementById('quizToggle');
+            const active = document.body.classList.contains('quiz-mode');
+            btn.classList.toggle('active', active);
+            btn.innerHTML = active ? '&#128215; Study Mode' : '&#127919; Quiz Mode';
+            // Reset reveals when entering quiz mode
+            if (active) {
+                cards.forEach(c => c.classList.remove('revealed'));
+                revealedSet.clear();
+                updateProgress();
+            }
+        };
+
+        // === REVEAL ANSWER ===
+        window.revealAnswer = function(btn) {
+            const card = btn.closest('.question-card');
+            card.classList.add('revealed');
+            const qNum = card.querySelector('.q-number').textContent;
+            revealedSet.add(qNum);
+            updateProgress();
+        };
+
+        // === THEME ===
+        window.toggleTheme = function() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            const btn = document.getElementById('themeToggle');
+            btn.innerHTML = isDark ? '&#127769; Dark' : '&#9728;&#65039; Light';
+        };
+
+        // === SEARCH ===
+        const searchInput = document.getElementById('searchInput');
+        let searchTimeout;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(doSearch, 200);
+        });
+
+        function doSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+            const sectionsVisible = {};
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const sectionMatch = currentSection === 'all' || card.dataset.section === String(currentSection);
+                const searchMatch = !query || text.includes(query);
+                const visible = sectionMatch && searchMatch;
+                card.style.display = visible ? '' : 'none';
+                if (visible) {
+                    visibleCount++;
+                    sectionsVisible[card.dataset.section] = true;
+                }
+            });
+
+            // Show/hide section titles based on visible cards
+            let curSec = 0;
+            allElements.forEach(el => {
+                if (el.classList.contains('section-title')) {
+                    const text = el.textContent;
+                    if (text.includes('Section 1')) curSec = 1;
+                    else if (text.includes('Section 2')) curSec = 2;
+                    else if (text.includes('Section 3')) curSec = 3;
+                    else if (text.includes('Section 4')) curSec = 4;
+                    else if (text.includes('Section 5')) curSec = 5;
+                    el.style.display = sectionsVisible[curSec] ? '' : 'none';
+                }
+            });
+
+            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // === SECTION FILTER ===
+        window.filterSection = function(section) {
+            currentSection = section;
+            document.querySelectorAll('.section-nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.closest('.section-nav-btn').classList.add('active');
+            doSearch();
+        };
+
+        // === PROGRESS ===
+        function updateProgress() {
+            const total = cards.length;
+            const count = revealedSet.size;
+            document.getElementById('progressText').textContent = count + ' / ' + total;
+            document.getElementById('progressFill').style.width = (count / total * 100) + '%';
+        }
+
+        // === SCROLL TO TOP ===
+        const scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', function() {
+            scrollBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // === KEYBOARD SHORTCUTS ===
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '/' && document.activeElement !== searchInput) {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            if (e.key === 'Escape') {
+                searchInput.value = '';
+                searchInput.blur();
+                doSearch();
+            }
+        });
+    })();
+    </script>
+</body>
+</html>
